@@ -26,7 +26,7 @@ public ResponseEntity<String> saveListOfStudentCertificate(@Argument(name ="inpu
     return certifiedStudentServices.saveListStudentCertificate(students);
 }
 @QueryMapping
-public CertifiedStudentPage certifyStudent(@Argument(name = "trainingApplicationId")long trainingApplicationId,@Argument(name = "input")CertifiedStudentInput input){
+public ResponseEntity<String> certifyStudent(@Argument(name = "trainingApplicationId")long trainingApplicationId,@Argument(name = "input")CertifiedStudentInput input){
     return certifiedStudentServices.studentCertificateApproval(trainingApplicationId,input);
 }
 @QueryMapping
