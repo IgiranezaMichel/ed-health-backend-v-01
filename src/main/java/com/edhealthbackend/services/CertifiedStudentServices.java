@@ -88,14 +88,17 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
 }
 @Autowired TrainingApplicationServices trainingApplicationServices;
 public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId,String trainingStatus, CertifiedStudentInput input) {
+ try {
   TrainingApplication trainingApplication=trainingApplicationServices.findById(trainingApplicationId);
   trainingApplication.setHospitalApprovalStatus(trainingStatus);
   // change training application status
  TrainingApplication application= trainingApplicationServices.saveOrUpdate(trainingApplication);
   // saving a certified student
   CertifiedStudent certifiedStudent=certifiedStudentRepository.save(new CertifiedStudent(trainingApplicationId, application.getStudent(), input.getCertificate(), input.getCertificateStatus(), LocalDateTime.now(), null));
-  
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
+  return new ResponseEntity<>("",HttpStatus.OK);
+ } catch (Exception e) {
+  // TODO: handle exception
+ }
+     
 }
 }
