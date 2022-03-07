@@ -32,6 +32,7 @@ registerStudentTrainingApplication(studentId:Long,trainingId:Long,studentApprova
 deleteCertificate(id:Long):String
 registerCertificate(certificate:CertificateInput):String
 # certify student
+certifyStudent(@Argument(name = "trainingApplicationId")long trainingApplicationId,@Argument(name = "applicationStatus")String TrainingApplicationStatus,@Argument(name = "input"):String
 # school
 registerSchool(input:SchoolInput):String
 deleteSchool(id:Long):String
