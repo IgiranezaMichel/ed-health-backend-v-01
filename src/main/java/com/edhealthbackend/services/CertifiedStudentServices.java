@@ -15,11 +15,13 @@ import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.Certificate;
 import com.edhealthbackend.model.CertifiedStudent;
 import com.edhealthbackend.model.Student;
+import com.edhealthbackend.model.Training;
 import com.edhealthbackend.model.gql.InputDefs.CertifiedStudentInput;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.CertifiedStudentPage;
 import com.edhealthbackend.repository.CertificateRepository;
 import com.edhealthbackend.repository.CertifiedStudentRepository;
+import com.edhealthbackend.repository.TrainingRepository;
 
 
 @Service
@@ -83,8 +85,10 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   Page<CertifiedStudent>page=certifiedStudentRepository.findAllByCertificate(certificate,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
   return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());
 }
-
+@Autowired TrainingRepository trainingRepository;
 public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId, CertifiedStudentInput input) {
+  Training training=new Training();
+  boolean trainingIsFound=tra
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
 }
