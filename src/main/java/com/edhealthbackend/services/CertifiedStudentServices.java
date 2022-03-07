@@ -88,7 +88,7 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
 @Autowired TrainingRepository trainingRepository;
 public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId, CertifiedStudentInput input) {
   Training training=new Training();
-  boolean trainingIsFound=tra
+  boolean trainingIsFound=trainingRepository.existsById(trainingApplicationId);
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
 }
