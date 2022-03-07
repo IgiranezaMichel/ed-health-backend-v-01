@@ -92,7 +92,7 @@ public ResponseEntity<String> studentCertificateApproval(long trainingApplicatio
   trainingApplication.setHospitalApprovalStatus(trainingStatus);
   // change training application status
   trainingApplicationServices.saveOrUpdate(trainingApplication);
-  if(trainingIsFound)training.set
+  
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
 }
