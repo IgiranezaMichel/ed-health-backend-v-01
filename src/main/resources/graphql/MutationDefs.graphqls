@@ -32,7 +32,7 @@ registerStudentTrainingApplication(studentId:Long,trainingId:Long,studentApprova
 deleteCertificate(id:Long):String
 registerCertificate(certificate:CertificateInput):String
 # certify student
-certifyStudent(trainingApplicationId:Long,applicationStatus:String,input:):String
+certifyStudent(trainingApplicationId:Long,applicationStatus:String,certifyStudentInput:CertifiedStudentInput):String
 # school
 registerSchool(input:SchoolInput):String
 deleteSchool(id:Long):String
