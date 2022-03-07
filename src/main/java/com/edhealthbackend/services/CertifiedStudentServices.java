@@ -86,7 +86,7 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());
 }
 @Autowired TrainingServices trainingServices;
-public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId, CertifiedStudentInput input) {
+public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId,String trainingStatus, CertifiedStudentInput input) {
   Training training=trainingServices.findTrainingById(trainingApplicationId);
   if(trainingIsFound)training.set
     // TODO Auto-generated method stub
