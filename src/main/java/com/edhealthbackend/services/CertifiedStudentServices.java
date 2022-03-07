@@ -91,8 +91,9 @@ public ResponseEntity<String> studentCertificateApproval(long trainingApplicatio
   TrainingApplication trainingApplication=trainingApplicationServices.findById(trainingApplicationId);
   trainingApplication.setHospitalApprovalStatus(trainingStatus);
   // change training application status
-  trainingApplicationServices.saveOrUpdate(trainingApplication);
+ TrainingApplication application= trainingApplicationServices.saveOrUpdate(trainingApplication);
   // saving a certified student
+  CertifiedStudent certifiedStudent=certifiedStudentRepository.save(new CertifiedStudent(trainingApplicationId, application.getStudent(), input.getCertificate(), input.getCertificateStatus(), LocalDateTime.now(), null));
   
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
