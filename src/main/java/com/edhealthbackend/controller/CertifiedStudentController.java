@@ -21,7 +21,7 @@ public class CertifiedStudentController {
 public ResponseEntity<String> giveCertificateToStudent(@Argument(name ="input")CertifiedStudentInput studentCertificate){
     return certifiedStudentServices.saveStudentCertificate(studentCertificate);
 }
-
+@MutationMapping
 public ResponseEntity<String> saveListOfStudentCertificate(@Argument(name ="input")List<CertifiedStudentInput> students){
     return certifiedStudentServices.saveListStudentCertificate(students);
 }
