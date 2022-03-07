@@ -83,4 +83,9 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   Page<CertifiedStudent>page=certifiedStudentRepository.findAllByCertificate(certificate,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
   return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());
 }
+
+public CertifiedStudentPage studentCertificateApproval(long trainingApplicationId, CertifiedStudentInput input) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
+}
 }
