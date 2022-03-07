@@ -16,6 +16,7 @@ import com.edhealthbackend.model.Certificate;
 import com.edhealthbackend.model.CertifiedStudent;
 import com.edhealthbackend.model.Student;
 import com.edhealthbackend.model.Training;
+import com.edhealthbackend.model.TrainingApplication;
 import com.edhealthbackend.model.gql.InputDefs.CertifiedStudentInput;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.CertifiedStudentPage;
@@ -85,9 +86,12 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   Page<CertifiedStudent>page=certifiedStudentRepository.findAllByCertificate(certificate,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
   return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());
 }
-@Autowired TrainingServices trainingServices;
+@Autowired TrainingApplicationServices trainingApplicationServices;
 public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId,String trainingStatus, CertifiedStudentInput input) {
-  Training training=trainingServices.findTrainingById(trainingApplicationId);
+  TrainingApplication trainingApplication=trainingApplicationServices.findById(trainingApplicationId);
+  trainingApplication.setHospitalApprovalStatus(trainingStatus);
+  // change training application status
+  trainingApplicationServices.saveOrUpdate(trainingApplication);
   if(trainingIsFound)training.set
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
