@@ -85,10 +85,10 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   Page<CertifiedStudent>page=certifiedStudentRepository.findAllByCertificate(certificate,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
   return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());
 }
-@Autowired TrainingRepository trainingRepository;
+@Autowired TrainingServices trainingServices;
 public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId, CertifiedStudentInput input) {
-  Training training=new Training();
-  boolean trainingIsFound=trainingRepository.existsById(trainingApplicationId);
+  Training training=trainingServices.findTrainingById(trainingApplicationId);
+  if(trainingIsFound)training.set
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'studentCertificateApproval'");
 }
