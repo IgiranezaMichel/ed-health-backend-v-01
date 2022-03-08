@@ -15,15 +15,12 @@ import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.Certificate;
 import com.edhealthbackend.model.CertifiedStudent;
 import com.edhealthbackend.model.Student;
-import com.edhealthbackend.model.Training;
 import com.edhealthbackend.model.TrainingApplication;
 import com.edhealthbackend.model.gql.InputDefs.CertifiedStudentInput;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.CertifiedStudentPage;
 import com.edhealthbackend.repository.CertificateRepository;
 import com.edhealthbackend.repository.CertifiedStudentRepository;
-import com.edhealthbackend.repository.TrainingRepository;
-
 
 @Service
 public class CertifiedStudentServices extends DefaultRepositoryMethod<CertifiedStudent,Long>{
