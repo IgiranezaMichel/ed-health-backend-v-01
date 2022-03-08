@@ -41,6 +41,7 @@ input CertificateInput{
   accountHolderId:Long
   trainingId:Long
 }
+# certified student
 # Traininer
 input TrainerInput{
     id:Long
