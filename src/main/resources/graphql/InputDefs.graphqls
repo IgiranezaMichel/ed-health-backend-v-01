@@ -44,10 +44,9 @@ input CertificateInput{
 # certified student
 input CertifiedStudentInput{
   id:Long
-  student:Student
+  studentId:Long
   certificateId:Long
   CertificateStatus:CertificateStatus
-  timeStamp:LocalDateTime
 }
 # Traininer
 input TrainerInput{
