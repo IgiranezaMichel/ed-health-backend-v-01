@@ -93,6 +93,7 @@ public ResponseEntity<String> studentCertificateApproval(long trainingApplicatio
   // saving a certified student
   Certificate certificate=new Certificate();
   boolean certificateFound=certificateRepository.existsById(input.getCertificateId());
+  // Find Certificate
   if(certificateFound)certificate.setId(input.getCertificateId());
   CertifiedStudent certifiedStudent=certifiedStudentRepository.save(new CertifiedStudent(trainingApplicationId, application.getStudent(),certificate, input.getCertificateStatus(), LocalDateTime.now(), null));
   return new ResponseEntity<>(certifiedStudent.getStudent().getUser().getName()+" Saved successfully",HttpStatus.OK);
