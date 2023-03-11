@@ -21,6 +21,7 @@ import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.CertifiedStudentPage;
 import com.edhealthbackend.repository.CertificateRepository;
 import com.edhealthbackend.repository.CertifiedStudentRepository;
+import com.edhealthbackend.repository.StudentRepository;
 
 @Service
 public class CertifiedStudentServices extends DefaultRepositoryMethod<CertifiedStudent,Long>{
@@ -84,18 +85,34 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());
 }
 @Autowired TrainingApplicationServices trainingApplicationServices;
+@Autowired StudentRepository  studentRepository;
 public ResponseEntity<String> studentCertificateApproval(long trainingApplicationId,String trainingStatus, CertifiedStudentInput input) {
+  Certificate certificate=new Certificate();
+  Student student=new Student();
  try {
   TrainingApplication trainingApplication=trainingApplicationServices.findById(trainingApplicationId);
   trainingApplication.setHospitalApprovalStatus(trainingStatus);
   // change training application status
  TrainingApplication application= trainingApplicationServices.saveOrUpdate(trainingApplication);
   // saving a certified student
-  Certificate certificate=new Certificate();
+  
   boolean certificateFound=certificateRepository.existsById(input.getCertificateId());
+  boolean studentFound=studentRepository.existsById(input.getStudentId());
   // Find Certificate
-  if(certificateFound)certificate.setId(input.getCertificateId());
-  CertifiedStudent certifiedStudent=certifiedStudentRepository.save(new CertifiedStudent(trainingApplicationId, application.getStudent(),certificate, input.getCertificateStatus(), LocalDateTime.now(), null));
+  if(certificateFound&&studentFound){
+    certificate.setId(input.getCertificateId());
+    student.setId(input.getStudentId());
+  }else{
+    throw new Exception("Enter valid student or application detail");
+  }
+  // Check whether a student certification is already exist in order to avoid duplicates on the same certificate
+  CertifiedStudent certifiedStudent=certifiedStudentRepository.findByCertificateAndStudent(certificate,student);
+  if(certifiedStudent!=null){
+    certifiedStudent.setCertificateStatus(input.getCertificateStatus());
+    certifiedStudentRepository.save(certifiedStudent);
+  }else{
+    certifiedStudentRepository.save(new CertifiedStudent(trainingApplicationId, application.getStudent(),certificate, input.getCertificateStatus(), LocalDateTime.now(), null));
+  }
   return new ResponseEntity<>(certifiedStudent.getStudent().getUser().getName()+" Saved successfully",HttpStatus.OK);
  } catch (Exception e) {
   return new ResponseEntity<>("Enter valid information",HttpStatus.METHOD_NOT_ALLOWED);
