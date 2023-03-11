@@ -91,6 +91,7 @@ public ResponseEntity<String> studentCertificateApproval(long trainingApplicatio
   // change training application status
  TrainingApplication application= trainingApplicationServices.saveOrUpdate(trainingApplication);
   // saving a certified student
+  Certificate certificate=certificateRepository.findById(input.getCertificateId());
   CertifiedStudent certifiedStudent=certifiedStudentRepository.save(new CertifiedStudent(trainingApplicationId, application.getStudent(), input.getCertificate(), input.getCertificateStatus(), LocalDateTime.now(), null));
   return new ResponseEntity<>(certifiedStudent.getStudent().getUser().getName()+" Saved successfully",HttpStatus.OK);
  } catch (Exception e) {
