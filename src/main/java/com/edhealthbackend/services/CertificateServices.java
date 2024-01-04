@@ -63,7 +63,8 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
         return certificateRepository.findById(id).orElse(null);
        }
     public List<Certificate> findCertificateByTrainingId(long trainingId) {
-        // Training training=trainingRepository.findById(trainingId).orElse(null);
+        Training training=trainingRepository.findById(trainingId).orElse(null);
+
     certificateRepository.findAll().stream().forEach(em->System.out.println(em.getTitle()));
         return certificateRepository.findAll();
     }
