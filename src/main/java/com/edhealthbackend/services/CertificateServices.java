@@ -66,6 +66,7 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
         Training training=new Training();
         boolean trainingFound=trainingRepository.existsById(trainingId);
         if(trainingFound)training.setId(trainingId);
+        training.setTimeStamp(LocalDateTime.now());
         List<Certificate>findCertificates=certificateRepository.findAllByTraining(training);
         return findCertificates;
     }
