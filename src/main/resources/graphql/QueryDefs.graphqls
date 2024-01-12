@@ -8,8 +8,9 @@ type Query{
     certificatePage(input:PaginationInput):CertificatePage
     findCertificateByTrainingId(trainingId:Long):[Certificate]
     # certified student
+    getCertifiedStudentPage(certificateId:Long,input:PaginationInput):CertifiedStudentPage
     getStudentCertificatePage(studentId:Long,input:PaginationInput):CertifiedStudentPage
-    findCertifiedStudentPage(certificateId:Long,input:PaginationInput):CertifiedStudentPage
+    
     # department
     getAllDepartment(sort:String):[Department]
     findDepartmentById(id:Long):Department
