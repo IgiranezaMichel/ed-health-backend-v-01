@@ -80,7 +80,7 @@ public CertifiedStudentPage findCertifiedStudentPage(long certificateId, Paginat
   Certificate certificate=new Certificate();
   boolean certificateIsFound=certificateRepository.existsById(certificateId);
   if(certificateIsFound)certificate.setId(certificateId);
-  Page
+  Page<CertifiedStudent>page=certifiedStudentRepository.findAllCertificate(certificate,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'findCertifiedStudentPage'");
 }
