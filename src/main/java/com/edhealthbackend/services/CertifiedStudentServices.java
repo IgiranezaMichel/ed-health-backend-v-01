@@ -74,4 +74,9 @@ students.stream().forEach(certified->{
 certifiedStudentRepository.saveAll(list);
 return new ResponseEntity<>("List of certificate saved successful",HttpStatus.OK);
 }
+
+public CertifiedStudentPage findCertifiedStudentPage(long certificateId, PaginationInput input) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'findCertifiedStudentPage'");
+}
 }
