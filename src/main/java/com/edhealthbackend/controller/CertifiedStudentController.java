@@ -30,7 +30,7 @@ public CertifiedStudentPage getStudentCertificatePage(@Argument(name = "studentI
     return certifiedStudentServices.findStudentCertificates(studentId,input);
 }
 @QueryMapping
-public CertifiedStudentPage findCertifiedStudentPageByCertificateId(@Argument(name = "certificate")long certificateId,@Argument(name="input")PaginationInput input){
+public CertifiedStudentPage findCertifiedStudentPageByCertificateId(@Argument(name = "certificateId")long certificateId,@Argument(name="input")PaginationInput input){
     return certifiedStudentServices.findCertifiedStudentPage(certificateId,input);
 }
 }
