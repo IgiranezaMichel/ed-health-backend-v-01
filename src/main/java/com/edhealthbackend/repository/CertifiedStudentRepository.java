@@ -11,7 +11,6 @@ public interface CertifiedStudentRepository extends JpaRepository<CertifiedStude
 
     Page<CertifiedStudent> findAllByStudent(Student student, PageRequest of);
 
-    Page<CertifiedStudent> findAllCertificate(Certificate certificate, PageRequest of);
 
     Page<CertifiedStudent> findAllByCertificate(Certificate certificate, PageRequest of);
 
