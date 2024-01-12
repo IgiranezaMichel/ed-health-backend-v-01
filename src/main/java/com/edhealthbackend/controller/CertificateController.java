@@ -30,7 +30,7 @@ try {
 }
 @QueryMapping
 public Certificate findCertificateById(@Argument(name ="id")long id){
-        return certificateServices.findCertificateById(id); 
+        return certificateServices.findCertificateById(id);
 }
 @QueryMapping
 public CertificatePage certificatePage(@Argument(name ="input")PaginationInput in){
