@@ -30,7 +30,7 @@ public CertifiedStudentServices(JpaRepository<CertifiedStudent, Long> jpaReposit
 @Autowired private CertifiedStudentRepository certifiedStudentRepository;
 @Autowired private CertificateServices certificateServices;
 @Autowired private StudentServices studentServices;
-
+@Autowired private CertificateRepository certificateRepository;
 @Override
 public String deleteById(Long id) {
    try {
@@ -75,7 +75,7 @@ students.stream().forEach(certified->{
 certifiedStudentRepository.saveAll(list);
 return new ResponseEntity<>("List of certificate saved successful",HttpStatus.OK);
 }
-@Autowired private CertificateRepository certificateRepository;
+
 public CertifiedStudentPage findCertifiedStudentPage(long certificateId, PaginationInput input) {
   Certificate certificate=new Certificate();
   boolean certificateIsFound=certificateRepository.existsById(certificateId);
