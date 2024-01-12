@@ -18,6 +18,7 @@ import com.edhealthbackend.model.Student;
 import com.edhealthbackend.model.gql.InputDefs.CertifiedStudentInput;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.CertifiedStudentPage;
+import com.edhealthbackend.repository.CertificateRepository;
 import com.edhealthbackend.repository.CertifiedStudentRepository;
 
 
@@ -74,8 +75,12 @@ students.stream().forEach(certified->{
 certifiedStudentRepository.saveAll(list);
 return new ResponseEntity<>("List of certificate saved successful",HttpStatus.OK);
 }
-
+@Autowired private CertificateRepository certificateRepository;
 public CertifiedStudentPage findCertifiedStudentPage(long certificateId, PaginationInput input) {
+  Certificate certificate=new Certificate();
+  boolean certificateIsFound=certificateRepository.existsById(certificateId);
+  if(certificateIsFound)certificate.setId(certificateId);
+  Page
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'findCertifiedStudentPage'");
 }
