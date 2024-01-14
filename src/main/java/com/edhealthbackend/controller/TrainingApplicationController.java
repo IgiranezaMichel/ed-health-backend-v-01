@@ -25,6 +25,7 @@ public ResponseEntity<String>registerStudentTrainingApplication(@Argument(name =
 public TrainingApplicationPage getTrainingApplicantPageByHospitalApprovalStatus(@Argument(name = "status")String status,@Argument(name = "trainingId")long trainingId,@Argument(name ="input")PaginationInput in){
     return trainingApplicationServices.findTrainingApplicantPageByHospitalAdmin(status,trainingId,in);
 }
+
 @QueryMapping
 public TrainingApplicationPage getStudentTrainingApplicationPage(@Argument(name = "input")PaginationInput in,@Argument(name="studentId")long studentId,@Argument(name = "status")String status){
 return trainingApplicationServices.getStudentTrainingApplication(studentId,status,in);
