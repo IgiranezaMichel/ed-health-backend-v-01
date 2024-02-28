@@ -12,6 +12,9 @@ dob:LocalDateTime
 password:String
 role:Role
 studentList:[Student]
+schoolAdminList:[SchoolAdmin]
+hospitalAdminList:[HospitalAdmin]
+accountHolderSignatureList:[Certificate]
 }
 type Certificate {
   id:Long
