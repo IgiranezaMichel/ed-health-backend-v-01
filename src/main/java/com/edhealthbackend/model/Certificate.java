@@ -33,7 +33,6 @@ public class Certificate {
     private LocalDateTime timeStamp;
     @ManyToOne
     private Training training;
-
     public Certificate(long id, String title, String description, String signature, String stamp,
             LocalDateTime now, Training training,AccountHolder accountHolder) {
         this.id = id;
