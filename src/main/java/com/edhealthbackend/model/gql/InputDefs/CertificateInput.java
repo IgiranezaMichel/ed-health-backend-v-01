@@ -1,8 +1,5 @@
 package com.edhealthbackend.model.gql.InputDefs;
-
-import java.time.LocalDateTime;
 import com.edhealthbackend.model.Certificate;
-
 import lombok.Getter;
 import lombok.Setter;
 
