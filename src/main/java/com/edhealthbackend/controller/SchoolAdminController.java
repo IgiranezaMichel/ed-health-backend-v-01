@@ -27,7 +27,6 @@ public class SchoolAdminController {
     }
     @QueryMapping
     public List<BarchartDTO<SchoolAdmin>> schoolAdminStatusStatistics(){
-
         return schoolAdminServices.schoolAdminStatus();
     }
 }

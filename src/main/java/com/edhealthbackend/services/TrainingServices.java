@@ -1,5 +1,6 @@
 package com.edhealthbackend.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.edhealthbackend.model.Training;
+import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.TrainingPage;
 import com.edhealthbackend.repository.TrainingRepository;
 
@@ -81,5 +83,11 @@ public class TrainingServices {
            training=this.saveOrUpdateTraining(training);
         }
        return new ResponseEntity<>(training.getTitle()+" Updated successful",HttpStatus.OK);
+    }
+
+    public TrainingPage findTrainingByNcnmApprovalStatusAndTrainingDeadlinetrainingPage(PaginationInput input,
+            String status) {
+              Page<Training>page=trainingRepository.findAllByNcnmApprovalStatusAndDeadlineBefore(status,LocalDateTime.now(),PageRequest.of(input.getPageNumber(),input.getPageSize(), Sort.by(input.getSort())));
+        return  new TrainingPage(page.getContent(), page.getNumber(), page.getTotalPages(), this.trainingSize());
     }
 }
