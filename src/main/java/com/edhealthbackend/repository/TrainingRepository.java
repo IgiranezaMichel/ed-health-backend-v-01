@@ -15,5 +15,6 @@ public interface TrainingRepository extends JpaRepository<Training,Long>{
             PageRequest of);
     Page<Training> findAllByDeadlineAfterAndNcnmApprovalStatus(LocalDateTime now, String ncnmApprovalStatus,
             PageRequest of);
+    Page<Training> findAllByNcnmApprovalStatusAndDeadlineBefore(String status, LocalDateTime now, PageRequest of);
 
 }

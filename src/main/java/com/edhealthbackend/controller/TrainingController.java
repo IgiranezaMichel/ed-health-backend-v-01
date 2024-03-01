@@ -57,4 +57,8 @@ public class TrainingController {
     public TrainingPage trainingPagination(@Argument("input") PaginationInput input) {
         return trainingServices.trainingPage(input.getPageNumber(), input.getPageSize(), input.getSort());
     }
+    @QueryMapping
+    public TrainingPage findTrainingByNcnmApprovalStatusAndTrainingDeadlinePage(@Argument("input") PaginationInput input,@Argument(name = "status")String status) {
+        return trainingServices.findTrainingByNcnmApprovalStatusAndTrainingDeadlinetrainingPage(input,status);
+    }
 }
