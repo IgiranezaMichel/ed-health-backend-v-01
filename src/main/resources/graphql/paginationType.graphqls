@@ -1,0 +1,48 @@
+type TrainingPage{
+content:[Training]
+pageNumber:Int
+totalPages:Int
+size:Int  
+}
+type HospitalPage{
+content:[Hospital]
+pageNumber:Int
+totalPages:Int
+size:Int
+}
+type JobPage{
+content:[Job]
+pageNumber:Int
+totalPages:Int
+size:Int
+}
+type SchoolPage{
+ content:[School]
+pageNumber:Int
+totalPages:Int
+size:Int   
+}
+type CertificatePage{
+content:[Certificate]
+pageNumber:Int
+totalPages:Int
+size:Int  
+}
+type StudentPage{
+content:[Student]
+pageNumber:Int
+totalPages:Int
+size:Int  
+}
+type AccountHolderPage{
+content:[AccountHolder]
+pageNumber:Int
+totalPages:Int
+size:Int
+}
+type TrainingApplicationPage{
+content:[TrainingApplication]
+pageNumber:Int
+totalPages:Int
+size:Int
+}

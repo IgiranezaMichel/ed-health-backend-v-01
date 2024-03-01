@@ -1,0 +1,42 @@
+type Mutation{
+    # user
+registerUser(input:AccountHolderInput):AccountHolder
+# Hospital mutations
+registerHospital(input:HospitalInput):String
+deleteHospitalById(id:Long):String
+# Location mutations
+registerLocation(input:LocationInput):String
+deleteLocationById(id:Long!):String
+# trainer
+registerTrainer(input:TrainerInput):String
+deleteTrainerById(id:Long):String
+# training
+registerTraining(input:TrainingInput):Training
+deleteTrainingById(id:Long):String
+updateTrainingStatus(trainingId:Long!,status:ID):String
+# job
+registerJob(input:JobInput):String
+deletJobById(id:Long):String
+# JobRequirement
+saveJobRequirement(input:JobRequirementInput):String
+# TrainingRequirementInput
+saveTrainingRequirementList(input:[TrainingRequirementInput]):String
+saveTrainingRequirement(input:TrainingRequirementInput):String
+# training application
+changeApplicantStatusByHospitalAdmin(trainingId:Long,trainingStatus:String):String
+# certificate
+deleteCertificate(id:Long):String
+saveCertificate(input:CertificateInput):String
+# school
+registerSchool(input:SchoolInput):String
+deleteSchool(id:Long):String
+# student
+registerStudent(input:StudentInput,user:AccountHolderInput):String
+# faculty
+registerFaculty(input:FacultyInput):String
+registerDepartment(input:DepartmentInput):String
+# academic annual report
+saveAnnualAcademicReport(input:AcademicAnnualResultInput):String
+# admins
+registerHospitalAdmin(hospitalAdmin:HospitalAdminInput,user:AccountHolderInput):String
+}

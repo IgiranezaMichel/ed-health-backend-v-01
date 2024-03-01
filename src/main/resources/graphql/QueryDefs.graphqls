@@ -1,0 +1,73 @@
+type Query{
+    # user
+    findIUserById(id:Long):AccountHolder
+    getAllUserByRole(role:Role,input:PaginationInput):AccountHolderPage
+    # certificate
+    findCertificateById(id:Long):Certificate
+    searchCertificates(search:String):[Certificate]
+    certificatePage(input:PaginationInput):CertificatePage
+    # department
+    getAllDepartment(sort:String):[Department]
+    findDepartmentById(id:Long):Department
+    searchDepartment(search:String):[Department]
+    # Faculty
+    getAllFaculty(sort:String):[Faculty]
+    findFacultyById(id:Long):Faculty
+    searchFaculty(search:String):[Faculty]
+    # hospital
+    findHospitalById(id:Long!):Hospital
+    getAllHospital(input:PaginationInput):HospitalPage
+    searchHospital(search:String):[Hospital]
+    findListOfTrainingByHospitalIdAndNcnmApprovalStatus(hospitalId:Long,ncnmApprovalStatus:String,input:PaginationInput):TrainingPage
+    findListOfNcnmApprovalStatusAfterDeadline(ncnmApprovalStatus:String,input:PaginationInput):TrainingPage
+    findListOfNcnmApprovalStatusBeforeDeadline(ncnmApprovalStatus:String,input:PaginationInput):TrainingPage
+    # job
+    getAllJob(sort:String):[Job]
+    findJobById(id:Long):Job
+    searchJob(search:String):[Job]
+    findJobsPostedByHospital(input:PaginationInput,hospitalId:Long,status:String):JobPage
+    findJobsPostedPage(input:PaginationInput,status:String):JobPage
+    # location
+    getAllLocation(sortBy:String):[Location]
+    findLocationById(id:Long!):Location
+    searchLocation(search:String):[Location]
+    filterLocationByType(sort:String,type:String):[Location]
+    # payment
+    getAllPayment(sort:String):[Payment]
+    findPaymentById(id:Long):Payment
+    searchPayment(search:String):[Payment]
+    # School
+    getAllSchool(sort:String):[School]
+    findSchoolById(id:Long):School
+    searchSchool(search:String):[School]
+    schoolPageList(input:PaginationInput):SchoolPage
+    # student
+    studentListPage(input:PaginationInput):StudentPage
+    studentFromSameSchoolListPage(schoolId:Long,input:PaginationInput):StudentPage
+    findStudentFromSameSchoolByStatusListPage(schoolId:Long,status:StudentStatus,input:PaginationInput):StudentPage
+    findStudentById(id:Long):Student
+    studentFromSameSchoolStatisticsByStatus(schoolId:Long):[BarchartDTO]
+    studentStatisticsByStatus:[BarchartDTO]
+    # trainer
+    getAllTrainer(sort:String):[Trainer]
+    findTrainerById(id:Long):Trainer
+    searchTrainer(search:String):[Trainer]
+    # training
+    getAllTraining(sort:String):[Training]
+    searchTraining(search:String):[Training]
+    findTrainingById(id:Long):Training
+    trainingPagination(input:PaginationInput):TrainingPage
+    hospitalPagination(input:PaginationInput):HospitalPage
+    # trainingApplication
+   getTrainingApplicantPageByHospitalApprovalStatus(status:String,trainingId:Long,input:PaginationInput):TrainingApplicationPage
+    findTrainingApplicationById(id:Long):TrainingApplication
+    searchTrainingApplication(search:String):[TrainingApplication]
+    # trainingRequirement
+    getAllTrainingRequirement(sort:String):[TrainingRequirement]
+    findTrainingRequirementById(id:Long):TrainingRequirement
+    searchTrainingRequirement(search:String):[TrainingRequirement]
+    # schoolAdmin
+    schoolAdminStatusStatistics:[BarchartDTO]
+    # hospitalAdmin
+    hospitalAdminStatisticByStatus:[BarchartDTO]
+}

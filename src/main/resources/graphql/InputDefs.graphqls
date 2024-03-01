@@ -1,0 +1,136 @@
+input AccountHolderInput{
+id:Long
+name:String
+gender:String
+email:String
+phoneNumber:String
+profilePicture:String
+dob:LocalDateTime
+password:String
+role:Role
+}
+input LocationInput{
+    id:Long
+    name:String
+    type:String
+    locationId:Long
+}
+input HospitalInput{
+    id:Long
+    name:String
+    description:String
+    locationId:Long
+    logo:String
+}
+input TrainingInput{
+    id:Long
+    title:String
+    description:String
+    deadline:LocalDateTime
+    ncnmApprovalStatus:String
+    trainerId:Long
+    locationId:Long
+    hospitalId:Long
+}
+input CertificateInput{
+  id: Long
+  title: String
+  description: String
+  signature: String
+  stamp: String
+  timeStamp: LocalDateTime
+  trainingId: Long
+}
+# Traininer
+input TrainerInput{
+    id:Long
+    trainerTitle:String
+    name:String
+    phoneNumber:String
+    profilePicture:String
+    trainingId:Long
+    signature:String
+}
+# Training
+input TrainingRequirementInput{
+id:Long
+description:String
+trainingId:Long
+}
+# job input
+input JobInput{
+  id: Long
+  title: String
+  description: String
+  deadline: String
+  status:String
+  numberOfEmployee:Int
+  picture:String
+  hospitalId: Long 
+}
+
+# pagination attribute
+input PaginationInput{
+    pageNumber:Int
+    pageSize:Int
+    sort:String
+}
+# jobRequirement
+input JobRequirementInput{
+    id:Long
+    jobId:Long
+    description:String
+}
+# school
+input SchoolInput{
+  id: Long
+  name: String
+  logo: String
+  locationId:Long
+}
+# student
+input StudentInput{
+id:Long
+schoolId:Long
+userId:Long
+departmentId:Long
+startingDate:LocalDateTime
+endingDate:LocalDateTime
+status:StudentStatus
+}
+# faculty input
+input FacultyInput{
+  id: Long
+  name: String
+  schoolId: Long
+}
+input DepartmentInput{
+ id: Long
+  name: String
+  totalCourse: Int
+  totalCredit: Int
+  facultyId: Long
+}
+input AcademicAnnualResultInput{
+    id:Long,
+    totalMarks:Float,
+    disciplineMarks:Float,
+    studentId:Long,
+}
+# admins
+input HospitalAdminInput{
+  id:Long
+  hospitalId:Long
+  position:String
+  status:Status
+}
+# 
+input TrainingApplicationInput{
+id:Long
+hospitalApprovalStatus:String
+hospitalApprovalTimeStamp:LocalDateTime
+studentApprovalStatus:String
+studentApprovalTimeStamp:LocalDateTime
+trainingId:Long
+studentId:Long
+}

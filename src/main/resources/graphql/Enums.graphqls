@@ -1,0 +1,25 @@
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+enum Role {
+  NCNM_ADMIN,
+  STUDENT,
+  ADMIN,
+  HOSPITAL_ADMIN,
+  SCHOOL_ADMIN
+}
+
+enum StudentStatus{
+  ACTIVE
+  INACTIVE
+  COMPLETE
+  DROPOUT
+  UNKNOWN
+}
+enum CertificateStatus{
+  APPROVED,
+  CANCELLED,
+  DENY,
+  NOT_COMPLETE_COURSES
+}

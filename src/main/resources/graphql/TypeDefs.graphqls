@@ -1,0 +1,176 @@
+scalar LocalDateTime
+scalar Long
+scalar BigDecimal
+type AccountHolder{
+id:Long
+name:String
+gender:String
+email:String
+phoneNumber:String
+profilePicture:String
+dob:LocalDateTime
+password:String
+role:Role
+studentList:[Student]
+}
+type Certificate {
+  id:Long
+  title:String
+  description:String
+  signature:String
+  stamp:String
+  timeStamp:LocalDateTime
+  training:Training
+  certifiedStudentList:[CertifiedStudent]
+}
+ 
+type Department {
+  id: Long
+  name: String
+  totalCourse: Int
+  totalCredit: Int
+  faculty: Faculty
+}
+type Faculty {
+  id: Long
+  name: String
+  school: School
+  departmentList: [Department]
+}
+
+type Hospital {
+  id: Long
+  name: String
+  logo: String
+  description: String
+  timeStamp: LocalDateTime
+  location: Location
+  hospitalTrainingList: [Training]
+  jobList: [Job]
+  hospitalAdminList:HospitalAdmin
+}
+type Job {
+  id: Long
+  title: String
+  description: String
+  deadline: LocalDateTime
+  timeStamp: LocalDateTime
+  status:String
+  picture:String
+  numberOfEmployee:Int
+  hospital: Hospital
+  jobRequirement: [JobRequirement]
+  jobApplicantList: [JobApplication]
+}
+type JobApplication {
+  id: Long
+  job: Job
+}
+
+type JobRequirement {
+  id: Long
+  description: String
+  job: Job
+}
+type Location {
+  id: Long
+  name: String
+  type: String
+  Location: Location
+  locationList: [Location]
+}
+type Payment {
+  id:Long
+  paymentCode:String
+  amount:Int
+  certificateValidStatus:CertificateValidStatus
+  timeStamp:LocalDateTime
+}
+type School {
+  id: Long
+  name: String
+  logo: String
+  location: Location
+  facultyList: [Faculty]
+}
+type Student{
+id:Long
+school:School
+user:AccountHolder
+department:Department
+startingDate:LocalDateTime
+endingDate:LocalDateTime
+status:StudentStatus
+}
+type Trainer {
+  id: Long
+  trainerTitle: String
+  name: String
+  phoneNumber: String
+  profilePicture: String
+  signature:String
+  training: Training
+}
+type Training {
+  id: Long
+  title: String
+  description: String
+  deadline:LocalDateTime
+  ncnmApprovalStatus: String
+  trainers: [Trainer]
+  location: Location
+  hospital: Hospital
+  timeStamp: LocalDateTime
+  applicantList: [TrainingApplication]
+  certificatedPersonList: [Certificate]
+  trainingRequirementList:[TrainingRequirement]
+  
+}
+type TrainingApplication {
+id:Long
+hospitalApprovalStatus:String
+hospitalApprovalTimeStamp:LocalDateTime
+studentApprovalStatus:String
+studentApprovalTimeStamp:LocalDateTime
+training:Training
+student:Student
+}
+type CertificateValidStatus {
+  id:Long
+  timeStamp:LocalDateTime
+  deadline:LocalDateTime
+  paymentList:[Payment]
+  certifiedStudent:CertifiedStudent
+}
+type CertifiedStudent{
+  id:Long
+  student:Student
+  certificate:Certificate
+  CertificateStatus:CertificateStatus
+  timeStamp:LocalDateTime
+}
+type TrainingRequirement {
+  id: Long
+  description: String
+  training: Training
+}
+type BarchartDTO {
+    label: ID
+    value: Long
+}
+type AcademicAnnualResult{
+    id:Long,
+    totalMarks:Int,
+    disciplineMarks:Int,
+    student:Student,
+}
+# admins
+type HospitalAdmin{
+  id:Long
+  hospital:Hospital
+  user:AccountHolder
+  position:String
+  startingDate:LocalDateTime
+  endDate:LocalDateTime
+  status:Status
+}
