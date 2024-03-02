@@ -87,7 +87,7 @@ public class TrainingServices {
 
     public TrainingPage findTrainingByNcnmApprovalStatusAndTrainingDeadlinetrainingPage(PaginationInput input,
             String status) {
-              Page<Training>page=trainingRepository.findAllByNcnmApprovalStatusAndDeadlineBefore(status,LocalDateTime.now(),PageRequest.of(input.getPageNumber(),input.getPageSize(), Sort.by(input.getSort())));
+              Page<Training>page=trainingRepository.findAllByNcnmApprovalStatusAndDeadlineAfter(status,LocalDateTime.now(),PageRequest.of(input.getPageNumber(),input.getPageSize(), Sort.by(input.getSort())));
         return  new TrainingPage(page.getContent(), page.getNumber(), page.getTotalPages(), this.trainingSize());
     }
 }
