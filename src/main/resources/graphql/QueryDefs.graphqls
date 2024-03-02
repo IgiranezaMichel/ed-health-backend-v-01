@@ -57,6 +57,7 @@ type Query{
     searchTraining(search:String):[Training]
     findTrainingById(id:Long):Training
     trainingPagination(input:PaginationInput):TrainingPage
+    findTrainingByNcnmApprovalStatusAndTrainingDeadlinePage(input:PaginationInput,status:String):TrainingPage
     hospitalPagination(input:PaginationInput):HospitalPage
     # trainingApplication
    getTrainingApplicantPageByHospitalApprovalStatus(status:String,trainingId:Long,input:PaginationInput):TrainingApplicationPage

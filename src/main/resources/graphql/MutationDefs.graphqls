@@ -24,6 +24,7 @@ saveTrainingRequirementList(input:[TrainingRequirementInput]):String
 saveTrainingRequirement(input:TrainingRequirementInput):String
 # training application
 changeApplicantStatusByHospitalAdmin(trainingId:Long,trainingStatus:String):String
+registerStudentTrainingApplication(studentId:Long,trainingId:Long,studentApprovalStatus:String):String
 # certificate
 deleteCertificate(id:Long):String
 saveCertificate(input:CertificateInput):String
