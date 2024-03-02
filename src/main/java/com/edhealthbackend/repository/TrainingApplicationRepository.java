@@ -14,5 +14,6 @@ public interface TrainingApplicationRepository extends JpaRepository<TrainingApp
     Page<TrainingApplication> findAllByTrainingAndHospitalApprovalStatus(Training training, String status,
             PageRequest of);
     TrainingApplication findByStudent(Student student);
+    Page<TrainingApplication> findAllByStudentAndHospitalApprovalStatus(Student student, String status, PageRequest of);
 
 }
