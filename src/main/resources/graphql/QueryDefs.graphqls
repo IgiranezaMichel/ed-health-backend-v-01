@@ -60,7 +60,8 @@ type Query{
     findTrainingByNcnmApprovalStatusAndTrainingDeadlinePage(input:PaginationInput,status:String):TrainingPage
     hospitalPagination(input:PaginationInput):HospitalPage
     # trainingApplication
-   getTrainingApplicantPageByHospitalApprovalStatus(status:String,trainingId:Long,input:PaginationInput):TrainingApplicationPage
+    getTrainingApplicantPageByHospitalApprovalStatus(status:String,trainingId:Long,input:PaginationInput):TrainingApplicationPage
+    getStudentTrainingApplicationPage(input:PaginationInput,studentId:Long,status:String):TrainingApplicationPage
     findTrainingApplicationById(id:Long):TrainingApplication
     searchTrainingApplication(search:String):[TrainingApplication]
     # trainingRequirement
