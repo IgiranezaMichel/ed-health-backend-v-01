@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -104,5 +105,12 @@ public class TrainingApplicationServices extends DefaultRepositoryMethod<Trainin
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.METHOD_NOT_ALLOWED);
     }
+  }
+  public TrainingApplicationPage getStudentTrainingApplication(long studentId, String status,PaginationInput in) {
+    Student student=studentServices.findById(studentId);
+    Page<TrainingApplication> page = tApplicationRepo.findAllByStudentAndHospitalApprovalStatus(student, status,
+    PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
+    return new TrainingApplicationPage(page.getContent(), page.getNumber(), page.getTotalPages(),
+        page.getTotalElements());
   }
 }
