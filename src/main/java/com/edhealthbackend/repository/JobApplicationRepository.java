@@ -9,10 +9,7 @@ import com.edhealthbackend.model.JobApplication;
 import com.edhealthbackend.model.Student;
 
 public interface JobApplicationRepository extends JpaRepository<JobApplication,Long>{
-
     Page<JobApplication> findAllByStudentAndStatus(Student student, String status, PageRequest of);
-
     JobApplication findByStudent(Student student);
-
-    Page<JobApplication> findAllByJob(Job job, PageRequest of);
+    Page<JobApplication> findAllByJobAndStatus(Job job, String status, PageRequest of);
 }
