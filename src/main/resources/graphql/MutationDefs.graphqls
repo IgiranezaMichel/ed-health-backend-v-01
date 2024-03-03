@@ -17,6 +17,8 @@ updateTrainingStatus(trainingId:Long!,status:ID):String
 # job
 registerJob(input:JobInput):String
 deletJobById(id:Long):String
+# job application
+registerStudentJobApplication(studentId:Long,jobId:Long,status:String):String
 # JobRequirement
 saveJobRequirement(input:JobRequirementInput):String
 # TrainingRequirementInput
