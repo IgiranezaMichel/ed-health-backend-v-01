@@ -34,7 +34,8 @@ public JobPage findJobsPostedByHospital(@Argument(name = "input")PaginationInput
 public JobPage findJobsPostedPage(@Argument(name = "input")PaginationInput in,@Argument(name = "status")String status){
    return jobServices.findActiveJobsPostedPage(in,status);
 }
-@QueryMapping Job findJobById(@Argument(name = "id")long id){
+@QueryMapping 
+public Job findJobById(@Argument(name = "id")long id){
    return jobServices.findById(id);
 }
 }
