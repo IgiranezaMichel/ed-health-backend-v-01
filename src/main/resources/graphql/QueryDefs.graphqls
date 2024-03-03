@@ -30,7 +30,7 @@ type Query{
     # job Application
     getStudentJobApplicationList(studentId:Long,status:String,input:PaginationInput):JobApplicationPage
     getJobApplicationDetail(id:Long):JobApplication
-    findJobApplicationByJobId(jobId:Long,input:PaginationInput):JobApplicationPage
+    findJobApplicationByJobIdAndJobStatus(jobId:Long,input:PaginationInput,status:String):JobApplicationPage
     # location
     getAllLocation(sortBy:String):[Location]
     findLocationById(id:Long!):Location
