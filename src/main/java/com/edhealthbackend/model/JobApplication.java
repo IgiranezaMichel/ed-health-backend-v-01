@@ -1,5 +1,7 @@
 package com.edhealthbackend.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,4 +21,8 @@ public class JobApplication {
 private long id;
 @ManyToOne(cascade = CascadeType.ALL,targetEntity = Job.class)
 private Job job;
+@ManyToOne(cascade = CascadeType.ALL,targetEntity = Student.class)
+private Student student;
+private LocalDateTime timeStamp;
+private String status;
 }
