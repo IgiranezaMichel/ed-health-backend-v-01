@@ -18,6 +18,10 @@ public class JobApplicationController {
 public ResponseEntity<String>registerStudentJobApplication(@Argument(name = "studentId")long studentId,@Argument(name = "jobId")long jobId,@Argument(name = "status")String status){
     return jobApplicationServices.registerJobApplication(studentId,jobId,status);
 }
+@MutationMapping
+public ResponseEntity<String>changeJobApplicantStatusByHospitalAdmin(@Argument(name = "id")long JobApplicationId,@Argument(name = "status")String status){
+    return jobApplicationServices.changeApplicantStatusByHospitalAdmin(JobApplicationId,status);
+}
 @QueryMapping
  public JobApplicationPage getStudentJobApplicationList(@Argument(name = "studentId")long studentId,@Argument(name = "status")String status,@Argument(name = "input")PaginationInput in){
    return jobApplicationServices.findStudentJobApplicationList(studentId,status,in);
