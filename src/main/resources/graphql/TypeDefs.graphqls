@@ -65,6 +65,9 @@ type Job {
 type JobApplication {
   id: Long
   job: Job
+  student:Student
+  status:String
+  timeStamp:LocalDateTime
 }
 
 type JobRequirement {
