@@ -46,3 +46,9 @@ pageNumber:Int
 totalPages:Int
 size:Int
 }
+type JobApplicationPage{
+content:[JobApplication]
+pageNumber:Int
+totalPages:Int
+size:Int
+}
