@@ -28,7 +28,9 @@ public class JobApplicationServices extends DefaultRepositoryMethod<JobApplicati
   private JobApplicationRepository jobApplicationRepository;
   @Autowired
   private StudentServices studentServices;
-  @Autowired private JobServices jobServices;
+  @Autowired
+  private JobServices jobServices;
+
   @Override
   public String deleteById(Long id) {
     try {
@@ -56,6 +58,7 @@ public class JobApplicationServices extends DefaultRepositoryMethod<JobApplicati
         PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
     return new JobApplicationPage(page.getContent(), page.getNumber(), page.getTotalPages(), page.getSize());
   }
+
   public ResponseEntity<String> registerJobApplication(long studentId, long jobId, String status) {
     Job job = jobServices.findById(jobId);
     Student student = studentServices.findById(studentId);
@@ -77,9 +80,22 @@ public class JobApplicationServices extends DefaultRepositoryMethod<JobApplicati
       }
     }
   }
+
   public JobApplicationPage findJobApplicationByJobIdAndJobStatus(long jobId, PaginationInput in, String status) {
-    Job job=jobServices.findById(jobId);
-    Page<JobApplication>page=jobApplicationRepository.findAllByJobAndStatus(job,status,PageRequest.of(in.getPageNumber(),in.getPageSize(), Sort.by(in.getSort())));
+    Job job = jobServices.findById(jobId);
+    Page<JobApplication> page = jobApplicationRepository.findAllByJobAndStatus(job, status,
+        PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
     return new JobApplicationPage(page.getContent(), page.getNumber(), page.getTotalPages(), page.getSize());
+  }
+
+  public ResponseEntity<String> changeApplicantStatusByHospitalAdmin(long jobApplicationId, String status) {
+    JobApplication jobApplication = this.findById(jobApplicationId);
+    if (jobApplication == null)
+      return new ResponseEntity<>("Please select collect applicant", HttpStatus.METHOD_NOT_ALLOWED);
+    jobApplication.setStatus(status);
+    this.saveOrUpdate(jobApplication);
+    return new ResponseEntity<>(
+        jobApplication.getStudent().getUser().getName() + " application has been " + status + " successfully",
+        HttpStatus.OK);
   }
 }
