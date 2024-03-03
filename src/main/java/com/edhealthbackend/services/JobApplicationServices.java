@@ -77,4 +77,9 @@ public class JobApplicationServices extends DefaultRepositoryMethod<JobApplicati
       }
     }
   }
+  public JobApplicationPage findJobApplicationByJobId(long jobId, PaginationInput in) {
+    Job job=jobServices.findById(jobId);
+    Page<JobApplication>page=jobApplicationRepository.findAllByJob(job,PageRequest.of(in.getPageNumber(),in.getPageSize(), Sort.by(in.getSort())));
+    return new JobApplicationPage(page.getContent(), page.getNumber(), page.getTotalPages(), page.getSize());
+  }
 }
