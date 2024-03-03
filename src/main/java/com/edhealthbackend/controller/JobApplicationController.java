@@ -26,4 +26,8 @@ public ResponseEntity<String>registerStudentJobApplication(@Argument(name = "stu
  public JobApplication getJobApplicationDetail(@Argument(name = "id")long id){
    return jobApplicationServices.findById(id);
 }
+@QueryMapping
+public JobApplicationPage findJobApplicationByJobId(@Argument(name ="jobId")long jobId,@Argument(name ="input")PaginationInput in){
+    return jobApplicationServices.findJobApplicationByJobId(jobId,in);
+}
 }
