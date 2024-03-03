@@ -27,6 +27,9 @@ type Query{
     searchJob(search:String):[Job]
     findJobsPostedByHospital(input:PaginationInput,hospitalId:Long,status:String):JobPage
     findJobsPostedPage(input:PaginationInput,status:String):JobPage
+    # job Application
+    getStudentJobApplicationList(studentId:Long,status:String,input:PaginationInput):JobApplicationPage
+    getJobApplicationDetail(id:Long):JobApplication
     # location
     getAllLocation(sortBy:String):[Location]
     findLocationById(id:Long!):Location
