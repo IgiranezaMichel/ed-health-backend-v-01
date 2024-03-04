@@ -52,3 +52,9 @@ pageNumber:Int
 totalPages:Int
 size:Int
 }
+type CertifiedStudentPage{
+content:[CertifiedStudent]
+pageNumber:Int
+totalPages:Int
+size:Int
+}
