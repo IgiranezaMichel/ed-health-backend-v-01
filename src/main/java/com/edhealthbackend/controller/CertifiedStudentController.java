@@ -1,5 +1,7 @@
 package com.edhealthbackend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -18,6 +20,9 @@ public class CertifiedStudentController {
 @MutationMapping
 public ResponseEntity<String> giveCertificateToStudent(@Argument(name ="input")CertifiedStudentInput studentCertificate){
     return certifiedStudentServices.saveStudentCertificate(studentCertificate);
+}
+public ResponseEntity<String> saveListOfStudentCertificate(@Argument(name ="input")List<CertifiedStudentInput> students){
+    return certifiedStudentServices.saveListStudentCertificate(students);
 }
 @QueryMapping
 public CertifiedStudentPage findStudentCertificates(@Argument(name = "studentId")long studentId,PaginationInput input){
