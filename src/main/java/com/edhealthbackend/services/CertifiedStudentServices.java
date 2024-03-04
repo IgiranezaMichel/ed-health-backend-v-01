@@ -1,6 +1,7 @@
 package com.edhealthbackend.services;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -63,5 +64,14 @@ public ResponseEntity<String> saveStudentCertificate(CertifiedStudentInput stude
   Certificate certificate=certificateServices.findById(studentCertificate.getCertificateId());
   CertifiedStudent certifiedStudent=this.saveOrUpdate(new CertifiedStudent(0, student, certificate, studentCertificate.getCertificateStatus(), LocalDateTime.now(), null));
   return new ResponseEntity<>(certifiedStudent.getStudent().getUser().getName()+" has given a certificate",HttpStatus.OK);
+}
+
+public ResponseEntity<String> saveListStudentCertificate(List<CertifiedStudentInput> students) {
+List<CertifiedStudent>list=new ArrayList<>();
+students.stream().forEach(certified->{
+  list.add(new CertifiedStudent(0, studentServices.findById(certified.getCertificateId()), certificateServices.findById(certified.getCertificateId()), certified.getCertificateStatus(), LocalDateTime.now(), null));
+});
+certifiedStudentRepository.saveAll(list);
+return new ResponseEntity<>("List of certificate saved successful",HttpStatus.OK);
 }
 }
