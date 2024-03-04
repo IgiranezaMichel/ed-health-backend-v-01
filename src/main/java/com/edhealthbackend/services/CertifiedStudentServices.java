@@ -6,10 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.CertifiedStudent;
 import com.edhealthbackend.model.Student;
+import com.edhealthbackend.model.gql.InputDefs.CertifiedStudentInput;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.pagination.CertifiedStudentPage;
 import com.edhealthbackend.repository.CertifiedStudentRepository;
@@ -48,5 +51,10 @@ public CertifiedStudentPage findStudentCertificates(long studentId, PaginationIn
     Student student=studentServices.findById(studentId);
     Page<CertifiedStudent>page=certifiedStudentRepository.findAllByStudent(student,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
     return new CertifiedStudentPage(page.getContent(), page.getNumber(), page.getTotalPages(), page.getSize());
+}
+
+public ResponseEntity<String> saveStudentCertificate(CertifiedStudentInput studentCertificate) {
+  
+  return new ResponseEntity<>("",HttpStatus.OK);
 }
 }
