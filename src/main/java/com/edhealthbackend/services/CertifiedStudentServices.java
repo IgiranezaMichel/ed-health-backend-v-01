@@ -1,5 +1,6 @@
 package com.edhealthbackend.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
+import com.edhealthbackend.model.Certificate;
 import com.edhealthbackend.model.CertifiedStudent;
 import com.edhealthbackend.model.Student;
 import com.edhealthbackend.model.gql.InputDefs.CertifiedStudentInput;
@@ -24,6 +26,9 @@ public CertifiedStudentServices(JpaRepository<CertifiedStudent, Long> jpaReposit
         super(jpaRepository);
     }
 @Autowired private CertifiedStudentRepository certifiedStudentRepository;
+@Autowired private CertificateServices certificateServices;
+@Autowired private StudentServices studentServices;
+
 @Override
 public String deleteById(Long id) {
    try {
@@ -46,7 +51,7 @@ tc.getCertificate().getDescription().toLowerCase().equals(searcString)
   )).
   toList();
 }
-@Autowired private StudentServices studentServices;
+
 public CertifiedStudentPage findStudentCertificates(long studentId, PaginationInput input) {
     Student student=studentServices.findById(studentId);
     Page<CertifiedStudent>page=certifiedStudentRepository.findAllByStudent(student,PageRequest.of(input.getPageNumber(), input.getPageSize(),Sort.by(input.getSort())));
@@ -54,7 +59,9 @@ public CertifiedStudentPage findStudentCertificates(long studentId, PaginationIn
 }
 
 public ResponseEntity<String> saveStudentCertificate(CertifiedStudentInput studentCertificate) {
-  
-  return new ResponseEntity<>("",HttpStatus.OK);
+  Student student=studentServices.findById(studentCertificate.getStudentId());
+  Certificate certificate=certificateServices.findById(studentCertificate.getCertificateId());
+  CertifiedStudent certifiedStudent=this.saveOrUpdate(new CertifiedStudent(0, student, certificate, studentCertificate.getCertificateStatus(), LocalDateTime.now(), null));
+  return new ResponseEntity<>(certifiedStudent.getStudent().getUser().getName()+" has given a certificate",HttpStatus.OK);
 }
 }
