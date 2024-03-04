@@ -7,7 +7,7 @@ type Query{
     searchCertificates(search:String):[Certificate]
     certificatePage(input:PaginationInput):CertificatePage
     # certified student
-    findStudentCertificates(studentId:Long,input:PaginationInput):CertifiedStudentPage
+    getStudentCertificatePage(studentId:Long,input:PaginationInput):CertifiedStudentPage
     # department
     getAllDepartment(sort:String):[Department]
     findDepartmentById(id:Long):Department
