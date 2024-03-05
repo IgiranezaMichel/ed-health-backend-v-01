@@ -62,10 +62,10 @@ public class TrainingApplicationServices extends DefaultRepositoryMethod<Trainin
         page.getTotalElements());
   }
 
-  public ResponseEntity<String> changeApplicantStatusByHospitalAdmin(long trainingApplicationId,
+  public ResponseEntity<String> changeApplicantStatusByHospitalAdmin(long applicationId,
       String trainingApplicationStatus) {
     try {
-      TrainingApplication trainingApplication = tApplicationRepo.findById(trainingApplicationId).orElseThrow();
+      TrainingApplication trainingApplication = tApplicationRepo.findById(applicationId).orElseThrow();
       trainingApplication.setHospitalApprovalStatus(trainingApplicationStatus);
       trainingApplication.setHospitalApprovalTimeStamp(LocalDateTime.now());
       TrainingApplication tApplication = tApplicationRepo.save(trainingApplication);
