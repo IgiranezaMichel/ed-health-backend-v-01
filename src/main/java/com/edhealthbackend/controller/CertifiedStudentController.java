@@ -21,11 +21,12 @@ public class CertifiedStudentController {
 public ResponseEntity<String> giveCertificateToStudent(@Argument(name ="input")CertifiedStudentInput studentCertificate){
     return certifiedStudentServices.saveStudentCertificate(studentCertificate);
 }
+
 public ResponseEntity<String> saveListOfStudentCertificate(@Argument(name ="input")List<CertifiedStudentInput> students){
     return certifiedStudentServices.saveListStudentCertificate(students);
 }
 @QueryMapping
-public CertifiedStudentPage getStudentCertificatePage(@Argument(name = "studentId")long studentId,PaginationInput input){
+public CertifiedStudentPage getStudentCertificatePage(@Argument(name = "studentId")long studentId,@Argument(name = "input")PaginationInput input){
     return certifiedStudentServices.findStudentCertificates(studentId,input);
 }
 }
