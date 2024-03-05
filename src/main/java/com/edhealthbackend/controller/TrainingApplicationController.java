@@ -14,8 +14,8 @@ import com.edhealthbackend.services.TrainingApplicationServices;
 public class TrainingApplicationController {
 @Autowired private TrainingApplicationServices trainingApplicationServices;
 @MutationMapping
-public ResponseEntity<String> changeApplicantStatusByHospitalAdmin(@Argument(name = "trainingId")long trainingId,@Argument(name = "trainingStatus")String trainingStatus){
-    return trainingApplicationServices.changeApplicantStatusByHospitalAdmin(trainingId,trainingStatus);
+public ResponseEntity<String> changeApplicantStatusByHospitalAdmin(@Argument(name = "applicationId")long applicationId,@Argument(name = "applicationStatus")String applicationStatus){
+    return trainingApplicationServices.changeApplicantStatusByHospitalAdmin(applicationId,applicationStatus);
 }
 @MutationMapping
 public ResponseEntity<String>registerStudentTrainingApplication(@Argument(name = "studentId")long studentId,@Argument(name ="trainingId")long trainingId,@Argument(name ="studentApprovalStatus")String approval){
