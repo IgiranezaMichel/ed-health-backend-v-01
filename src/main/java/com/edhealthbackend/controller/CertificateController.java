@@ -17,7 +17,7 @@ import com.edhealthbackend.services.CertificateServices;
 public class CertificateController {
 @Autowired private CertificateServices certificateServices;
 @MutationMapping
-public ResponseEntity<String> registerCertificate(@Argument(name = "input")CertificateInput in){
+public ResponseEntity<String> registerCertificate(@Argument(name = "certificate")CertificateInput in){
 return certificateServices.registerCertificate(in);
 }
 @MutationMapping
