@@ -31,11 +31,16 @@ public class StudentServices extends DefaultRepositoryMethod<Student, Long> {
         super(jpaRepository);
     }
 
-    @Autowired private StudentRepository studentRepository;
-    @Autowired private SchoolRepository schoolRepository;
-    @Autowired private AccountHolderServices userServices;
-    @Autowired private SchoolServices schoolServices;
-    @Autowired private DepartmentServices departmentServices;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    private SchoolRepository schoolRepository;
+    @Autowired
+    private AccountHolderServices userServices;
+    @Autowired
+    private SchoolServices schoolServices;
+    @Autowired
+    private DepartmentServices departmentServices;
 
     @Override
     public List<Student> search(String search) {
@@ -68,50 +73,61 @@ public class StudentServices extends DefaultRepositoryMethod<Student, Long> {
     }
 
     public StudentPage studentListPage(long schoolId, PaginationInput in) {
-        School school=schoolRepository.findById(schoolId).orElse(null);
-        Page<Student>studentPage=studentRepository.findAllBySchool(school,PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
-       return new StudentPage(studentPage.getContent(), studentPage.getNumber(),studentPage.getTotalPages(), studentPage.getNumberOfElements());
+        School school = schoolRepository.findById(schoolId).orElse(null);
+        Page<Student> studentPage = studentRepository.findAllBySchool(school,
+                PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
+        return new StudentPage(studentPage.getContent(), studentPage.getNumber(), studentPage.getTotalPages(),
+                studentPage.getNumberOfElements());
     }
 
     public StudentPage findStudentFromSameSchoolByStatusListPage(long schoolId, StudentStatus status,
             PaginationInput in) {
-                School school=schoolRepository.findById(schoolId).orElse(null);
-                Page<Student>studentPage=studentRepository.findAllBySchoolAndStatus(school,status,PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
-               return new StudentPage(studentPage.getContent(), studentPage.getNumber(),studentPage.getTotalPages(), studentPage.getNumberOfElements());
+        School school = schoolRepository.findById(schoolId).orElse(null);
+        Page<Student> studentPage = studentRepository.findAllBySchoolAndStatus(school, status,
+                PageRequest.of(in.getPageNumber(), in.getPageSize(), Sort.by(in.getSort())));
+        return new StudentPage(studentPage.getContent(), studentPage.getNumber(), studentPage.getTotalPages(),
+                studentPage.getNumberOfElements());
     }
 
     public String saveOrUpdateStudent(StudentInput in) {
-       try {
-   AccountHolder user=userServices.findById(in.getUserId());
-    School school=schoolServices.findById(in.getSchoolId());
-    Department department=departmentServices.findById(in.getDepartmentId());
-    if(user==null||school==null||department==null)throw new Exception("Error happen");
-return studentRepository.save(new Student(in.getId(), school, user,department,LocalDateTime.now(), null, in.getStatus(),null,null)).getUser().getName()+"saved successful";
-} catch (Exception e) {
-return "User doesn't exist";
-}
+        try {
+            AccountHolder user = userServices.findById(in.getUserId());
+            School school = schoolServices.findById(in.getSchoolId());
+            Department department = departmentServices.findById(in.getDepartmentId());
+            if (user == null || school == null || department == null)
+                throw new Exception("Error happen");
+            return studentRepository.save(new Student(in.getId(), school, user, department, LocalDateTime.now(), null,
+                    in.getStatus(), null, null)).getUser().getName() + "saved successful";
+        } catch (Exception e) {
+            return "User doesn't exist";
+        }
     }
+
     @QueryMapping
-    public List<BarchartDTO<StudentStatus>> studentStatus(long SchoolId){
-        School school=schoolRepository.findById(SchoolId).orElse(null);
+    public List<BarchartDTO<StudentStatus>> studentStatus(long SchoolId) {
+        School school = schoolRepository.findById(SchoolId).orElse(null);
         return studentRepository.studentStatisticsByStatus(school);
     }
 
     public String saveOrUpdateStudent(StudentInput in, AccountHolderInput user) {
         try {
-            AccountHolder user1=userServices.findByEmail(user.getEmail());
-            if(user1==null)
-             user1=userServices.saveOrUpdate(new AccountHolder(user.getId(), user.getName(), user.getGender(), user.getEmail(), user.getPhoneNumber(), user.getProfilePicture(), user.getDob(), user.getPassword(), user.getRole(), null, null,null));
-             School school=schoolServices.findById(in.getSchoolId());
-             Department department=departmentServices.findById(in.getDepartmentId());
-             if(user==null||school==null||department==null)throw new Exception("Error happen");
-         return studentRepository.save(new Student(in.getId(), school, user1,department,LocalDateTime.now(), null, in.getStatus(),null,null)).getUser().getName()+" saved successful";
-         } catch (Exception e) {
-         return "User doesn't exist";
+            AccountHolder user1 = userServices.findByEmail(user.getEmail());
+            if (user1 == null)
+                user1 = userServices.saveOrUpdate(new AccountHolder(user.getId(), user.getName(), user.getGender(),
+                        user.getEmail(), user.getPhoneNumber(), user.getProfilePicture(), user.getDob(),
+                        user.getPassword(), user.getRole(), null, null, null, null));
+            School school = schoolServices.findById(in.getSchoolId());
+            Department department = departmentServices.findById(in.getDepartmentId());
+            if (user == null || school == null || department == null)
+                throw new Exception("Error happen");
+            return studentRepository.save(new Student(in.getId(), school, user1, department, LocalDateTime.now(), null,
+                    in.getStatus(), null, null)).getUser().getName() + " saved successful";
+        } catch (Exception e) {
+            return "User doesn't exist";
+        }
     }
-}
 
     public List<BarchartDTO<StudentStatus>> studentStatisticsByStatus() {
-       return studentRepository.studentStatisticsByStatus();
+        return studentRepository.studentStatisticsByStatus();
     }
 }
