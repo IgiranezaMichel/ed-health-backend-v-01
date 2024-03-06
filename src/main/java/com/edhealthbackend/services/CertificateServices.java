@@ -24,6 +24,7 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
     }
 @Autowired private CertificateRepository certificateRepository;
 @Autowired private TrainingRepository trainingRepository;
+@Autowired private AccountHolderServices accountHolderServices;
     public String deleteById(Long id) {
     try {
         Certificate certificate=this.findById(id);
@@ -47,13 +48,13 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
         CertificatePage certificatePage=new CertificatePage(certificatePagination.getContent(), certificatePagination.getPageNumber(), certificatePagination.getTotalPages(), certificatePagination.getSize());
         return certificatePage;
     }
-    @Autowired private AccountHolderServices accountHolderServices;
+    
     public ResponseEntity<String> registerCertificate(CertificateInput in) {
     try {
         Training training=trainingRepository.findById(in.getTrainingId()).orElseThrow();
         AccountHolder accountHolder=accountHolderServices.findById(in.getAccountHolderId());
         
-        return new ResponseEntity<>(this.saveOrUpdate(new Certificate(in.getId(),in.getTitle(), in.getDescription(), in.getUserSignature(), in.getHospitalStamp(), LocalDateTime.now(), training,accountHolder)).getTitle()+" Saved sucessfully",HttpStatus.OK); 
+        return new ResponseEntity<>("Certificate "+this.saveOrUpdate(new Certificate(in.getId(),in.getTitle(), in.getDescription(), in.getUserSignature(), in.getHospitalStamp(), LocalDateTime.now(), training,accountHolder)).getTitle()+" Saved successfully",HttpStatus.OK); 
     } catch (Exception e) {
       return new ResponseEntity<>("Training not found",HttpStatus.NOT_ACCEPTABLE);
     }
