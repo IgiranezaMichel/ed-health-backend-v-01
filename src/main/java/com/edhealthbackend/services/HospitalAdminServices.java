@@ -44,7 +44,7 @@ public String deleteById(Long id) {
 public ResponseEntity<String> registerHospitalAdmin(HospitalAdminInput in, AccountHolderInput user) {
     AccountHolder user1=userServices.findByEmail(user.getEmail());
     if(user1==null&&!user.getName().equals("")&&!user.getPhoneNumber().equals("")){
-        user1=userServices.saveOrUpdate(new AccountHolder(user.getId(), user.getName(), user.getGender(), user.getEmail(), user.getPhoneNumber(), user.getProfilePicture(), user.getDob(), user.getPassword(), Role.HOSPITAL_ADMIN, null, null, null));
+        user1=userServices.saveOrUpdate(new AccountHolder(user.getId(), user.getName(), user.getGender(), user.getEmail(), user.getPhoneNumber(), user.getProfilePicture(), user.getDob(), user.getPassword(), Role.HOSPITAL_ADMIN, null, null, null,null));
     }
     if(user1==null&&user.getName().equals("")&&user.getPhoneNumber().equals("")&&user.getProfilePicture().equals(""))return new ResponseEntity<>("Please Add valid user data",HttpStatus.METHOD_NOT_ALLOWED);
     Hospital hospital=hospitalServices.findHospitalById(in.getHospitalId());
