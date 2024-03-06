@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
+import com.edhealthbackend.model.AccountHolder;
 import com.edhealthbackend.model.Certificate;
 import com.edhealthbackend.model.Training;
 import com.edhealthbackend.model.gql.InputDefs.CertificateInput;
@@ -46,15 +47,18 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
         CertificatePage certificatePage=new CertificatePage(certificatePagination.getContent(), certificatePagination.getPageNumber(), certificatePagination.getTotalPages(), certificatePagination.getSize());
         return certificatePage;
     }
+    @Autowired private AccountHolderServices accountHolderServices;
     public ResponseEntity<String> registerCertificate(CertificateInput in) {
     try {
         Training training=trainingRepository.findById(in.getTrainingId()).orElseThrow();
-        return new ResponseEntity<>(this.saveOrUpdate(new Certificate(in.getId(),in.getTitle(), in.getDescription(), in.getSignature(), in.getStamp(), LocalDateTime.now(), training)).getTitle()+" Saved sucessfully",HttpStatus.OK); 
+        AccountHolder accountHolder=accountHolderServices.findById(in.getAccountHolderId());
+        
+        return new ResponseEntity<>(this.saveOrUpdate(new Certificate(in.getId(),in.getTitle(), in.getDescription(), in.getUserSignature(), in.getHospitalStamp(), LocalDateTime.now(), training,accountHolder)).getTitle()+" Saved sucessfully",HttpStatus.OK); 
     } catch (Exception e) {
       return new ResponseEntity<>("Training not found",HttpStatus.NOT_ACCEPTABLE);
     }
     }
     public Certificate findCertificateById(long id) {
-        return certificateRepository.findById(id).orElse(null); 
+        return certificateRepository.findById(id).orElse(null);
        }
 }
