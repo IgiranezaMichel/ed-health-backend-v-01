@@ -30,7 +30,7 @@ changeApplicantStatusByHospitalAdmin(applicationId:Long,applicationStatus:String
 registerStudentTrainingApplication(studentId:Long,trainingId:Long,studentApprovalStatus:String):String
 # certificate
 deleteCertificate(id:Long):String
-saveCertificate(input:CertificateInput):String
+registerCertificate(input:CertificateInput):String
 # school
 registerSchool(input:SchoolInput):String
 deleteSchool(id:Long):String
