@@ -17,13 +17,13 @@ type Certificate {
   id:Long
   title:String
   description:String
-  signature:String
-  stamp:String
+  userSignature:String
+  hospitalStamp:String
+  accountHolder:AccountHolder
   timeStamp:LocalDateTime
   training:Training
   certifiedStudentList:[CertifiedStudent]
 }
- 
 type Department {
   id: Long
   name: String
