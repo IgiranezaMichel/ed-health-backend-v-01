@@ -41,4 +41,7 @@ private List<Student>studentList;
 private List<SchoolAdmin>schoolAdminList;
 @OneToMany(mappedBy= "user",cascade = CascadeType.ALL,targetEntity = HospitalAdmin.class)
 private List<HospitalAdmin>hospitalAdminList;
+@OneToMany(mappedBy= "accountHolder",cascade = CascadeType.ALL,targetEntity = Certificate.class)
+private List<Certificate>accountHolderSignatureList;
+
 }
