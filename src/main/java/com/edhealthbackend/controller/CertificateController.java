@@ -40,4 +40,8 @@ public CertificatePage certificatePage(@Argument(name ="input")PaginationInput i
 public List<Certificate> searchCertificates(@Argument(name = "search")String search){
     return certificateServices.search(search);
 }
+@QueryMapping
+public List<Certificate> findCertificateByTrainingId(@Argument(name = "trainingId")long trainingId){
+    return certificateServices.findCertificateByTrainingId(trainingId);
+}
 }
