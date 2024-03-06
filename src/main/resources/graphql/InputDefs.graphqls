@@ -33,12 +33,13 @@ input TrainingInput{
     hospitalId:Long
 }
 input CertificateInput{
-  id: Long
-  title: String
-  description: String
-  signature: String
-  stamp: String
-  trainingId: Long
+  id:Long
+  title:String
+  description:String
+  userSignature:String
+  hospitalStamp:String
+  accountHolderId:Long
+  trainingId:Long
 }
 # Traininer
 input TrainerInput{
