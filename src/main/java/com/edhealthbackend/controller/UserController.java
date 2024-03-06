@@ -21,7 +21,7 @@ public AccountHolder findIUserById(@Argument(name= "id")long id){
 }
 @MutationMapping
 public AccountHolder registerUser(@Argument(name = "input")AccountHolderInput in){
-return userServices.saveOrUpdate(new AccountHolder(in.getId(),in.getName(), in.getGender(), in.getEmail(), in.getPhoneNumber(), in.getProfilePicture(), in.getDob(), in.getPassword(), in.getRole(), null, null,null));
+return userServices.saveOrUpdate(new AccountHolder(in.getId(),in.getName(), in.getGender(), in.getEmail(), in.getPhoneNumber(), in.getProfilePicture(), in.getDob(), in.getPassword(), in.getRole(), null, null,null,null));
 }
 @QueryMapping
 public AccountHolderPage getAllUserByRole(@Argument(name = "role")Role role,@Argument(name = "input")PaginationInput in){
