@@ -78,4 +78,7 @@ public TrainingPage findListOfNcnmApprovalStatusAfterDeadLine(String ncnmApprova
     Page<Training>page=trainingRepository.findAllByDeadlineAfterAndNcnmApprovalStatus(LocalDateTime.now(),ncnmApprovalStatus,PageRequest.of(input.getPageNumber(),input.getPageSize(), Sort.by(input.getSort())));
     return new TrainingPage(page.getContent(), page.getNumber(), page.getTotalPages(),page.getTotalElements());  
     }
+public long totalHospital() {
+  return hospitalRepository.count();
+}
 }
