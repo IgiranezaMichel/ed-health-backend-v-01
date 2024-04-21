@@ -2,6 +2,7 @@ type Query{
     # user
     findIUserById(id:Long):AccountHolder
     getAllUserByRole(role:Role,input:PaginationInput):AccountHolderPage
+    getTotalAccountHolderByRole(role:Role):Int
     # certificate
     findCertificateById(id:Long):Certificate
     searchCertificates(search:String):[Certificate]
@@ -26,6 +27,7 @@ type Query{
     findListOfTrainingByHospitalIdAndNcnmApprovalStatus(hospitalId:Long,ncnmApprovalStatus:String,input:PaginationInput):TrainingPage
     findListOfNcnmApprovalStatusAfterDeadline(ncnmApprovalStatus:String,input:PaginationInput):TrainingPage
     findListOfNcnmApprovalStatusBeforeDeadline(ncnmApprovalStatus:String,input:PaginationInput):TrainingPage
+    totalHospital:Int
     # job
     getAllJob(sort:String):[Job]
     findJobById(id:Long):Job
