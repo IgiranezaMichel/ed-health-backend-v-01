@@ -78,4 +78,8 @@ public class HospitalController {
     public HospitalPage hospitalPagination(@Argument(name = "input") PaginationInput input) {
         return hospitalServices.hospitalPagination(input);
     }
+    @QueryMapping
+    public long totalHospital() {
+        return hospitalServices.totalHospital();
+    }
 }
