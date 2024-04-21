@@ -27,5 +27,8 @@ return userServices.saveOrUpdate(new AccountHolder(in.getId(),in.getName(), in.g
 public AccountHolderPage getAllUserByRole(@Argument(name = "role")Role role,@Argument(name = "input")PaginationInput in){
 return userServices.findAllUserByRole(role,in);
 }
-
+@QueryMapping
+public long getTotalAccountHolderByRole(@Argument(name = "role")Role role){
+    return userServices.getTotalAccountHolderByRole(role);
+  }
 }
