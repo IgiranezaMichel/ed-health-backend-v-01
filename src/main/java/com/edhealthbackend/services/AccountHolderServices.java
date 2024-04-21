@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import com.edhealthbackend.enums.Role;
 import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.AccountHolder;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
@@ -49,5 +50,7 @@ public AccountHolderPage findAllUserByRole(com.edhealthbackend.enums.Role role, 
 public AccountHolder findByEmail(String email) {
  return userRepository.findByEmail(email);
 }
-
+public long getTotalAccountHolderByRole(Role role){
+  return userRepository.countByRole(role);
+}
 }
