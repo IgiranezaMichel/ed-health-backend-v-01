@@ -12,4 +12,6 @@ public interface AccountHolderRepository extends JpaRepository<AccountHolder,Lon
 
     AccountHolder findByEmail(String email);
 
+    long countByRole(Role student);
+
 }
