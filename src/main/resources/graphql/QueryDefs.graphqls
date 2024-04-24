@@ -38,6 +38,7 @@ type Query{
     getStudentJobApplicationList(studentId:Long,status:String,input:PaginationInput):JobApplicationPage
     getJobApplicationDetail(id:Long):JobApplication
     findJobApplicationByJobIdAndJobStatus(jobId:Long,input:PaginationInput,status:String):JobApplicationPage
+    getJobApplicationListByUserId(userId:Long):[JobApplication]
     # location
     getAllLocation(sortBy:String):[Location]
     findLocationById(id:Long!):Location
