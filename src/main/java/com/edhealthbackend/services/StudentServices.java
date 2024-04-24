@@ -130,4 +130,9 @@ public class StudentServices extends DefaultRepositoryMethod<Student, Long> {
     public List<BarchartDTO<StudentStatus>> studentStatisticsByStatus() {
         return studentRepository.studentStatisticsByStatus();
     }
+
+    public Student findByAccountHolder(AccountHolder accountHolder) {
+       return studentRepository.findByUser(accountHolder);
+    }
+
 }
