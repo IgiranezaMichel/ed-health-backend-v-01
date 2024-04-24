@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.edhealthbackend.DTO.BarchartDTO;
 import com.edhealthbackend.enums.StudentStatus;
+import com.edhealthbackend.model.AccountHolder;
 import com.edhealthbackend.model.School;
 import com.edhealthbackend.model.Student;
 public interface StudentRepository extends JpaRepository<Student,Long>{
@@ -20,5 +21,7 @@ public interface StudentRepository extends JpaRepository<Student,Long>{
     List<BarchartDTO<StudentStatus>> studentStatisticsByStatus(School school);
     @Query("SELECT new com.edhealthbackend.DTO.BarchartDTO(COUNT(st.id),st.status) FROM Student st GROUP BY st.status")
     List<BarchartDTO<StudentStatus>> studentStatisticsByStatus();
+
+    Student findByUser(AccountHolder accountHolder);
 
 }
