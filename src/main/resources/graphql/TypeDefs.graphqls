@@ -69,7 +69,7 @@ type JobApplication {
   job: Job
   student:Student
   status:String
-  timeStamp:LocalDateTime
+  timeStamp:String
 }
 
 type JobRequirement {
