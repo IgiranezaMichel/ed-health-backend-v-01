@@ -1,5 +1,7 @@
 package com.edhealthbackend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -33,5 +35,9 @@ public ResponseEntity<String>changeJobApplicantStatusByHospitalAdmin(@Argument(n
 @QueryMapping
 public JobApplicationPage findJobApplicationByJobIdAndJobStatus(@Argument(name ="jobId")long jobId,@Argument(name ="input")PaginationInput in,@Argument(name ="status")String status){
     return jobApplicationServices.findJobApplicationByJobIdAndJobStatus(jobId,in,status);
+}
+@QueryMapping
+public List<JobApplication> getJobApplicationListByUserId(@Argument(name = "userId")long id){
+    return jobApplicationServices.findUserJobApplicationList(id);
 }
 }
