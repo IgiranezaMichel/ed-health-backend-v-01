@@ -1,6 +1,7 @@
 package com.edhealthbackend.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -25,4 +26,8 @@ private Job job;
 private Student student;
 private LocalDateTime timeStamp;
 private String status;
+public String getTimeStamp(){
+    DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+    return formatter.format(timeStamp);
+}
 }
