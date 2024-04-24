@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
+import com.edhealthbackend.model.AccountHolder;
 import com.edhealthbackend.model.Job;
 import com.edhealthbackend.model.JobApplication;
 import com.edhealthbackend.model.Student;
@@ -28,6 +29,7 @@ public class JobApplicationServices extends DefaultRepositoryMethod<JobApplicati
   private JobApplicationRepository jobApplicationRepository;
   @Autowired
   private StudentServices studentServices;
+  @Autowired private AccountHolderServices accountHolderServices;
   @Autowired
   private JobServices jobServices;
 
@@ -98,4 +100,10 @@ public class JobApplicationServices extends DefaultRepositoryMethod<JobApplicati
         jobApplication.getStudent().getUser().getName() + " application has been " + status + " successfully",
         HttpStatus.OK);
   }
+
+public List<JobApplication> findUserJobApplicationList(long id) {
+  AccountHolder AccountHolder=accountHolderServices.findById(id);
+  Student student=studentServices.findByAccountHolder(AccountHolder);
+  return jobApplicationRepository.findAllByStudent(student);
+}
 }
