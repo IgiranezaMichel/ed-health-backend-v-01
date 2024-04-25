@@ -25,6 +25,7 @@ input HospitalInput{
 input TrainingInput{
     id:Long
     title:String
+    trainingRequirement:String
     description:String
     deadline:LocalDateTime
     ncnmApprovalStatus:String
@@ -58,12 +59,6 @@ input TrainerInput{
     trainingId:Long
     signature:String
 }
-# Training
-input TrainingRequirementInput{
-id:Long
-description:String
-trainingId:Long
-}
 # job input
 input JobInput{
   id: Long
@@ -73,6 +68,7 @@ input JobInput{
   status:String
   numberOfEmployee:Int
   picture:String
+  jobRequirement:String
   hospitalId: Long 
 }
 
@@ -82,12 +78,7 @@ input PaginationInput{
     pageSize:Int
     sort:String
 }
-# jobRequirement
-input JobRequirementInput{
-    id:Long
-    jobId:Long
-    description:String
-}
+
 # school
 input SchoolInput{
   id: Long
