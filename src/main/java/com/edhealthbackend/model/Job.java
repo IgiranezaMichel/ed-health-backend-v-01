@@ -2,6 +2,7 @@ package com.edhealthbackend.model;
 import java.time.*;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,8 +42,8 @@ public Job(long id, String title,String description,LocalDateTime deadline,Hospi
     this.numberOfEmployee=numberOfEmployee;
     this.timeStamp=LocalDateTime.now();
 }
-@OneToMany(mappedBy = "job",cascade = CascadeType.ALL,targetEntity = JobRequirement.class)
-private List<JobRequirement> jobRequirement;
+@Column(columnDefinition = "text")
+private String jobRequirement;
 @OneToMany(mappedBy="job",cascade = CascadeType.ALL,targetEntity = JobApplication.class)
 private List<JobApplication>jobApplicantList;
 }
