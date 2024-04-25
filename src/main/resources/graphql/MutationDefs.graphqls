@@ -20,11 +20,6 @@ deletJobById(id:Long):String
 # job application
 registerStudentJobApplication(studentId:Long,jobId:Long,status:String):String
 changeJobApplicantStatusByHospitalAdmin(id:Long,status:String):String
-# JobRequirement
-saveJobRequirement(input:JobRequirementInput):String
-# TrainingRequirementInput
-saveTrainingRequirementList(input:[TrainingRequirementInput]):String
-saveTrainingRequirement(input:TrainingRequirementInput):String
 # training application
 changeApplicantStatusByHospitalAdmin(applicationId:Long,applicationStatus:String):String
 registerStudentTrainingApplication(studentId:Long,trainingId:Long,studentApprovalStatus:String):String
