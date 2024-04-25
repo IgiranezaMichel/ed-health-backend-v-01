@@ -76,10 +76,6 @@ type Query{
     getStudentTrainingApplicationPage(input:PaginationInput,studentId:Long,status:String):TrainingApplicationPage
     findTrainingApplicationById(id:Long):TrainingApplication
     searchTrainingApplication(search:String):[TrainingApplication]
-    # trainingRequirement
-    getAllTrainingRequirement(sort:String):[TrainingRequirement]
-    findTrainingRequirementById(id:Long):TrainingRequirement
-    searchTrainingRequirement(search:String):[TrainingRequirement]
     # schoolAdmin
     schoolAdminStatusStatistics:[BarchartDTO]
     # hospitalAdmin
