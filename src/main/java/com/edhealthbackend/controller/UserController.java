@@ -23,6 +23,10 @@ public AccountHolder findIUserById(@Argument(name= "id")long id){
 public AccountHolder registerUser(@Argument(name = "input")AccountHolderInput in){
 return userServices.saveOrUpdate(new AccountHolder(in.getId(),in.getName(), in.getGender(), in.getEmail(), in.getPhoneNumber(), in.getProfilePicture(), in.getDob(), in.getPassword(), in.getRole(), null, null,null,null));
 }
+@MutationMapping
+public AccountHolder findAccountHolderByEmail(@Argument(name = "email")String email){
+ return userServices.findByEmail(email);
+}
 @QueryMapping
 public AccountHolderPage getAllUserByRole(@Argument(name = "role")Role role,@Argument(name = "input")PaginationInput in){
 return userServices.findAllUserByRole(role,in);
@@ -31,5 +35,4 @@ return userServices.findAllUserByRole(role,in);
 public long getTotalAccountHolderByRole(@Argument(name = "role")Role role){
     return userServices.getTotalAccountHolderByRole(role);
   }
-  
 }
