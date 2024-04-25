@@ -31,4 +31,5 @@ return userServices.findAllUserByRole(role,in);
 public long getTotalAccountHolderByRole(@Argument(name = "role")Role role){
     return userServices.getTotalAccountHolderByRole(role);
   }
+  
 }
