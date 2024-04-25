@@ -16,6 +16,8 @@ public class Training {
     private LocalDateTime timeStamp= LocalDateTime.now();
     private LocalDateTime deadline;
     private String ncnmApprovalStatus;
+    @Column(columnDefinition = "text")
+    private String trainingRequirement;
     @ManyToOne(cascade = CascadeType.ALL,targetEntity=Location.class)
     private Location location;
     @ManyToOne(cascade = CascadeType.ALL,targetEntity = Hospital.class)
@@ -36,6 +38,4 @@ public class Training {
     private List<TrainingApplication>applicantList;
     @OneToMany(mappedBy = "training",cascade = CascadeType.ALL,targetEntity = Certificate.class)
     private List<Certificate>certificatedPersonList;
-    @OneToMany(mappedBy = "training",cascade = CascadeType.ALL,targetEntity = TrainingRequirement.class)
-    private List<TrainingRequirement>trainingRequirementList;
 }
