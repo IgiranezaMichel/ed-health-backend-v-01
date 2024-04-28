@@ -38,8 +38,6 @@ public class StudentServices extends DefaultRepositoryMethod<Student, Long> {
     @Autowired
     private AccountHolderServices userServices;
     @Autowired
-    private SchoolServices schoolServices;
-    @Autowired
     private DepartmentServices departmentServices;
 
     @Override
@@ -92,7 +90,7 @@ public class StudentServices extends DefaultRepositoryMethod<Student, Long> {
     public String saveOrUpdateStudent(StudentInput in) {
         try {
             AccountHolder user = userServices.findById(in.getUserId());
-            School school = schoolServices.findById(in.getSchoolId());
+            School school = schoolRepository.findById(in.getSchoolId()).get();
             Department department = departmentServices.findById(in.getDepartmentId());
             if (user == null || school == null || department == null)
                 throw new Exception("Error happen");
@@ -116,7 +114,7 @@ public class StudentServices extends DefaultRepositoryMethod<Student, Long> {
                 user1 = userServices.saveOrUpdate(new AccountHolder(user.getId(), user.getName(), user.getGender(),
                         user.getEmail(), user.getPhoneNumber(), user.getProfilePicture(), user.getDob(),
                         user.getPassword(), user.getRole(), null, null, null, null));
-            School school = schoolServices.findById(in.getSchoolId());
+            School school = schoolRepository.findById(in.getSchoolId()).get();
             Department department = departmentServices.findById(in.getDepartmentId());
             if (user == null || school == null || department == null)
                 throw new Exception("Error happen");
