@@ -112,4 +112,9 @@ public class TrainingApplicationServices extends DefaultRepositoryMethod<Trainin
     return new TrainingApplicationPage(page.getContent(), page.getNumber(), page.getTotalPages(),
         page.getTotalElements());
   }
+  public List<TrainingApplication> getListOfAllTrainingApplicant(long trainingId) {
+    Training training=trainingServices.findTrainingById(trainingId);
+    return tApplicationRepo.findAllByTraining(training);
+     
+  }
 }
