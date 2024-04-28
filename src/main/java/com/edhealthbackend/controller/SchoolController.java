@@ -6,20 +6,23 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 import com.edhealthbackend.model.School;
+import com.edhealthbackend.model.gql.InputDefs.AccountHolderInput;
 import com.edhealthbackend.model.gql.InputDefs.Pagination;
 import com.edhealthbackend.model.gql.InputDefs.PaginationInput;
 import com.edhealthbackend.model.gql.InputDefs.SchoolInput;
 import com.edhealthbackend.model.gql.pagination.SchoolPage;
-import com.edhealthbackend.services.LocationServices;
 import com.edhealthbackend.services.SchoolServices;
 
 @Controller
 public class SchoolController {
 @Autowired private SchoolServices schoolServices;
-@Autowired private LocationServices locationServices;
 @MutationMapping
-public String registerSchool(@Argument(name = "input")SchoolInput in){
-return schoolServices.saveOrUpdate(new School(in.getId(), in.getName(), in.getLogo(), locationServices.findLocationById(in.getLocationId()))).getName()+" Saved successfully";
+public String registerSchoolForExistingAccountHolder(@Argument(name = "schoolInput")SchoolInput in,@Argument(name = "userEmail")String email){
+return schoolServices.saveSchoolByAddingExistingUser(in,email);
+}
+@MutationMapping
+public String registerSchoolForNewAccountHolder(@Argument(name = "schoolInput")SchoolInput in,@Argument(name = "userInput")AccountHolderInput user){
+    return schoolServices.saveNewSchoolAndUser(in,user);
 }
 @MutationMapping
 public String deleteSchool(@Argument(name = "id")long id){
