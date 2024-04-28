@@ -24,6 +24,8 @@ hospitalStamp:String
 accountHolder:AccountHolder
 timeStamp:LocalDateTime
 training:Training
+offeredHasToPay:Boolean
+price:Int
 certifiedStudentList:[CertifiedStudent]
 }
 type Department {
