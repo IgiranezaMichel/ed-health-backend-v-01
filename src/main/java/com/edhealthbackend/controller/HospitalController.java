@@ -26,8 +26,8 @@ public class HospitalController {
     private LocationServices locationServices;
 
     @MutationMapping
-    public ResponseEntity<String> registerHospital(@Argument(name="input") HospitalInput hospitalInput) {
-        Location location=locationServices.findLocationById(hospitalInput.getLocationId());
+    public ResponseEntity<String> registerHospital(@Argument(name = "input") HospitalInput hospitalInput) {
+        Location location = locationServices.findLocationById(hospitalInput.getLocationId());
         Hospital hospital = hospitalServices.saveOrUpdateHospital(new Hospital(hospitalInput.getId(),
                 hospitalInput.getName(), hospitalInput.getLogo(), hospitalInput.getDescription(), LocalDateTime.now(),
                 location));
@@ -48,22 +48,26 @@ public class HospitalController {
     public Hospital findHospitalById(@Argument(name = "id") long id) {
         return hospitalServices.findHospitalById(id);
     }
+
     @QueryMapping
     public TrainingPage findListOfTrainingByHospitalIdAndNcnmApprovalStatus(@Argument("hospitalId") long hospitalId,
-    @Argument("ncnmApprovalStatus")String ncnmApprovalStatus,@Argument("input")PaginationInput input
-    ) {
-        return hospitalServices.findListOfTrainingByHospitalIdAndNcnmApprovalStatus(hospitalId,ncnmApprovalStatus,input);
+            @Argument("ncnmApprovalStatus") String ncnmApprovalStatus, @Argument("input") PaginationInput input) {
+        return hospitalServices.findListOfTrainingByHospitalIdAndNcnmApprovalStatus(hospitalId, ncnmApprovalStatus,
+                input);
     }
+
     @QueryMapping
-    public TrainingPage findListOfNcnmApprovalStatusBeforeDeadline( @Argument("ncnmApprovalStatus")String ncnmApprovalStatus,@Argument("input")PaginationInput input
-    ) {
-        return hospitalServices.findListOfNcnmApprovalStatusBeforeDeadLine(ncnmApprovalStatus,input);
+    public TrainingPage findListOfNcnmApprovalStatusBeforeDeadline(
+            @Argument("ncnmApprovalStatus") String ncnmApprovalStatus, @Argument("input") PaginationInput input) {
+        return hospitalServices.findListOfNcnmApprovalStatusBeforeDeadLine(ncnmApprovalStatus, input);
     }
+
     @QueryMapping
-    public TrainingPage findListOfNcnmApprovalStatusAfterDeadline( @Argument("ncnmApprovalStatus")String ncnmApprovalStatus,@Argument("input")PaginationInput input
-    ) {
-        return hospitalServices.findListOfNcnmApprovalStatusAfterDeadLine(ncnmApprovalStatus,input);
+    public TrainingPage findListOfNcnmApprovalStatusAfterDeadline(
+            @Argument("ncnmApprovalStatus") String ncnmApprovalStatus, @Argument("input") PaginationInput input) {
+        return hospitalServices.findListOfNcnmApprovalStatusAfterDeadLine(ncnmApprovalStatus, input);
     }
+
     @QueryMapping
     public HospitalPage getAllHospital(@Argument(name = "input") PaginationInput in) {
         return hospitalServices.hospitalPagination(in);
@@ -78,6 +82,7 @@ public class HospitalController {
     public HospitalPage hospitalPagination(@Argument(name = "input") PaginationInput input) {
         return hospitalServices.hospitalPagination(input);
     }
+
     @QueryMapping
     public long totalHospital() {
         return hospitalServices.totalHospital();
