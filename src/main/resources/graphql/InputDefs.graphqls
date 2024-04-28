@@ -41,6 +41,8 @@ input CertificateInput{
   hospitalStamp:String
   accountHolderId:Long
   trainingId:Long
+  offeredHasToPay:Boolean
+  price:Int
 }
 # certified student
 input CertifiedStudentInput{
