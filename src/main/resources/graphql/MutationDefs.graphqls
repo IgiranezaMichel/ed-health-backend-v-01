@@ -31,7 +31,8 @@ registerCertificate(certificate:CertificateInput):String
 # certify student
 certifyStudent(trainingApplicationId:Long,applicationStatus:String,certifyStudentInput:CertifiedStudentInput):String
 # school
-registerSchool(input:SchoolInput):String
+registerSchoolForExistingAccountHolder(schoolInput:SchoolInput,userEmail:String):String
+registerSchoolForNewAccountHolder(schoolInput:SchoolInput,userInput:AccountHolderInput):String
 deleteSchool(id:Long):String
 # student
 registerStudent(input:StudentInput,user:AccountHolderInput):String
