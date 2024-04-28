@@ -24,7 +24,7 @@ public String registerJob(@Argument(name = "input")JobInput in){
    } catch (Exception e) {
    hospital=null;
    }
-   return jobServices.saveOrUpdate(new Job(in.getId(),in.getTitle(),in.getDescription(),in.getDeadline(),hospital,in.getPicture(),in.getStatus(),in.getNumberOfEmployee())).getTitle()+" saved successfully";
+   return jobServices.saveOrUpdate(new Job(in.getId(),in.getTitle(),in.getDescription(),in.getDeadline(),hospital,in.getPicture(),in.getStatus(),in.getNumberOfEmployee(),in.getJobRequirement())).getTitle()+" saved successfully";
 }
 @QueryMapping
 public JobPage findJobsPostedByHospital(@Argument(name = "input")PaginationInput in,@Argument(name = "hospitalId")long hospitalId,@Argument(name = "status")String status){
