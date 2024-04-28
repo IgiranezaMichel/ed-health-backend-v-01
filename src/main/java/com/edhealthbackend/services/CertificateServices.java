@@ -54,7 +54,7 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
         Training training=trainingRepository.findById(in.getTrainingId()).orElseThrow();
         AccountHolder accountHolder=accountHolderServices.findById(in.getAccountHolderId());
         
-        return new ResponseEntity<>("Certificate "+this.saveOrUpdate(new Certificate(in.getId(),in.getTitle(), in.getDescription(), in.getUserSignature(), in.getHospitalStamp(), LocalDateTime.now(), training,accountHolder)).getTitle()+" Saved successfully",HttpStatus.OK); 
+        return new ResponseEntity<>("Certificate "+this.saveOrUpdate(new Certificate(in.getId(),in.getTitle(), in.getDescription(), in.getUserSignature(), in.getHospitalStamp(), LocalDateTime.now(), training,accountHolder,in.isOfferedHasToPay(),in.getPrice())).getTitle()+" Saved successfully",HttpStatus.OK); 
     } catch (Exception e) {
       return new ResponseEntity<>("Training not found",HttpStatus.NOT_ACCEPTABLE);
     }
@@ -63,11 +63,7 @@ public CertificateServices(JpaRepository<Certificate, Long> jpaRepository) {
         return certificateRepository.findById(id).orElse(null);
        }
     public List<Certificate> findCertificateByTrainingId(long trainingId) {
-        Training training=new Training();
-        boolean trainingFound=trainingRepository.existsById(trainingId);
-        if(trainingFound)training.setId(trainingId);
-        training.setTimeStamp(LocalDateTime.now());
-        List<Certificate>findCertificates=certificateRepository.findAllByTraining(training);
-        return findCertificates;
+        Training training=trainingRepository.findById(trainingId).get();
+        return certificateRepository.findAllByTraining(training);
     }
 }
