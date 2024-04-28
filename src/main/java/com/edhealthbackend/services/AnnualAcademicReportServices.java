@@ -12,11 +12,12 @@ import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.AnnualAcademicResult;
 import com.edhealthbackend.model.Student;
 import com.edhealthbackend.model.gql.InputDefs.AnnualAcademicResultInput;
+import com.edhealthbackend.repository.StudentRepository;
 
 @Service
 public class AnnualAcademicReportServices extends DefaultRepositoryMethod<AnnualAcademicResult, Long> {
     @Autowired
-    private StudentServices studentServices;
+    private StudentRepository studentRepository;
 
     public AnnualAcademicReportServices(JpaRepository<AnnualAcademicResult, Long> jpaRepository) {
         super(jpaRepository);
@@ -33,9 +34,9 @@ public class AnnualAcademicReportServices extends DefaultRepositoryMethod<Annual
     }
 
     public String saveAcademicReport(AnnualAcademicResultInput in) {
-        Student student = studentServices.findById(in.getStudentId());
+        Student student = studentRepository.findById(in.getStudentId()).get();
         student.setStatus(StudentStatus.COMPLETE);
-        studentServices.saveOrUpdate(student);
+        studentRepository.save(student);
         return this.saveOrUpdate(new AnnualAcademicResult(in.getId(), in.getTotalMarks(), in.getDisciplineMarks(),
                 student, LocalDateTime.now())).getStudent().getUser().getName() + " Added successful";
     }
