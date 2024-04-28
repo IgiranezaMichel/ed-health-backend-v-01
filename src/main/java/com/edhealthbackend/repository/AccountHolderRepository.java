@@ -7,11 +7,9 @@ import com.edhealthbackend.enums.Role;
 import com.edhealthbackend.model.AccountHolder;
 
 public interface AccountHolderRepository extends JpaRepository<AccountHolder,Long>{
-
     Page<AccountHolder> findAllByRole(Role role, PageRequest of);
-
     AccountHolder findByEmail(String email);
-
     long countByRole(Role student);
+    boolean existsByEmail(String email);
 
 }
