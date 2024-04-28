@@ -33,8 +33,10 @@ public class Certificate {
     private LocalDateTime timeStamp;
     @ManyToOne
     private Training training;
+    private boolean offeredHasToPay;
+    private double price;
     public Certificate(long id, String title, String description, String signature, String stamp,
-            LocalDateTime now, Training training,AccountHolder accountHolder) {
+            LocalDateTime now, Training training,AccountHolder accountHolder,boolean offeredHasToPay,double price) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -43,6 +45,8 @@ public class Certificate {
         this.timeStamp = now;
         this.training = training;
         this.accountHolder=accountHolder;
+        this.offeredHasToPay=offeredHasToPay;
+        this.price=price;
     }
     @OneToMany(mappedBy = "certificate")
     private List<CertifiedStudent> certifiedStudentList;
