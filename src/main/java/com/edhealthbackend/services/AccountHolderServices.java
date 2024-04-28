@@ -53,4 +53,9 @@ public AccountHolder findByEmail(String email) {
 public long getTotalAccountHolderByRole(Role role){
   return userRepository.countByRole(role);
 }
+public AccountHolder changeUserRight(String email){
+  // AccountHolder accountHolder=userRepository.findByEmail(email);
+  
+  return null;
+}
 }
