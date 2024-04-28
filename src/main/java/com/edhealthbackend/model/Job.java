@@ -31,7 +31,9 @@ private String picture;
 private String status;
 @ManyToOne(cascade = CascadeType.ALL,targetEntity = Hospital.class)
 private Hospital hospital;
-public Job(long id, String title,String description,LocalDateTime deadline,Hospital hospital,String picture,String status,int numberOfEmployee){
+@Column(columnDefinition = "text")
+private String jobRequirement;
+public Job(long id, String title,String description,LocalDateTime deadline,Hospital hospital,String picture,String status,int numberOfEmployee,String jobRequirement){
     this.id=id;
     this.title=title;
     this.description=description;
@@ -41,9 +43,8 @@ public Job(long id, String title,String description,LocalDateTime deadline,Hospi
     this.status=status;
     this.numberOfEmployee=numberOfEmployee;
     this.timeStamp=LocalDateTime.now();
+    this.jobRequirement=jobRequirement;
 }
-@Column(columnDefinition = "text")
-private String jobRequirement;
 @OneToMany(mappedBy="job",cascade = CascadeType.ALL,targetEntity = JobApplication.class)
 private List<JobApplication>jobApplicantList;
 }
