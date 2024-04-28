@@ -76,6 +76,7 @@ type Query{
     getStudentTrainingApplicationPage(input:PaginationInput,studentId:Long,status:String):TrainingApplicationPage
     findTrainingApplicationById(id:Long):TrainingApplication
     searchTrainingApplication(search:String):[TrainingApplication]
+    getListOfAllTrainingApplicant(trainingId:Long):[TrainingApplication]
     # schoolAdmin
     schoolAdminStatusStatistics:[BarchartDTO]
     # hospitalAdmin
