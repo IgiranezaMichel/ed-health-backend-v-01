@@ -1,32 +1,33 @@
 scalar LocalDateTime
 scalar Long
 scalar BigDecimal
-type AccountHolder{
-id:Long
-name:String
-gender:String
-email:String
-phoneNumber:String
-profilePicture:String
-dob:LocalDateTime
-password:String
-role:Role
-studentList:[Student]
-hospitalAdminList:[HospitalAdmin]
-accountHolderSignatureList:[Certificate]
+type AccountHolder {
+  id: Long
+  name: String
+  gender: String
+  email: String
+  phoneNumber: String
+  profilePicture: String
+  dob: LocalDateTime
+  password: String
+  role: Role
+  studentList: [Student]
+  hospitalAdminList: [HospitalAdmin]
+  schoolAdminList: [SchoolAdmin]
+  accountHolderSignatureList: [Certificate]
 }
 type Certificate {
-id:Long
-title:String
-description:String
-userSignature:String
-hospitalStamp:String
-accountHolder:AccountHolder
-timeStamp:LocalDateTime
-training:Training
-offeredHasToPay:Boolean
-price:Int
-certifiedStudentList:[CertifiedStudent]
+  id: Long
+  title: String
+  description: String
+  userSignature: String
+  hospitalStamp: String
+  accountHolder: AccountHolder
+  timeStamp: LocalDateTime
+  training: Training
+  offeredHasToPay: Boolean
+  price: Int
+  certifiedStudentList: [CertifiedStudent]
 }
 type Department {
   id: Long
@@ -51,7 +52,7 @@ type Hospital {
   location: Location
   hospitalTrainingList: [Training]
   jobList: [Job]
-  hospitalAdminList:HospitalAdmin
+  hospitalAdminList: HospitalAdmin
 }
 type Job {
   id: Long
@@ -59,9 +60,9 @@ type Job {
   description: String
   deadline: LocalDateTime
   timeStamp: LocalDateTime
-  status:String
-  picture:String
-  numberOfEmployee:Int
+  status: String
+  picture: String
+  numberOfEmployee: Int
   hospital: Hospital
   jobRequirement: String
   jobApplicantList: [JobApplication]
@@ -69,9 +70,9 @@ type Job {
 type JobApplication {
   id: Long
   job: Job
-  student:Student
-  status:String
-  timeStamp:String
+  student: Student
+  status: String
+  timeStamp: String
 }
 
 type Location {
@@ -82,27 +83,37 @@ type Location {
   locationList: [Location]
 }
 type Payment {
-  id:Long
-  paymentCode:String
-  amount:Int
-  certificateValidStatus:CertificateValidStatus
-  timeStamp:LocalDateTime
+  id: Long
+  paymentCode: String
+  amount: Int
+  certificateValidStatus: CertificateValidStatus
+  timeStamp: LocalDateTime
 }
 type School {
   id: Long
   name: String
   logo: String
   location: Location
+  studentList: [Student]
+  schoolAdminList: [SchoolAdmin]
   facultyList: [Faculty]
 }
-type Student{
-id:Long
-school:School
-user:AccountHolder
-department:Department
-startingDate:LocalDateTime
-endingDate:LocalDateTime
-status:StudentStatus
+type SchoolAdmin {
+  school:School
+  user:AccountHolder
+  position: String
+  startingDate: LocalDateTime
+  endDate: LocalDateTime
+  status: Status
+}
+type Student {
+  id: Long
+  school: School
+  user: AccountHolder
+  department: Department
+  startingDate: LocalDateTime
+  endingDate: LocalDateTime
+  status: StudentStatus
 }
 type Trainer {
   id: Long
@@ -110,14 +121,14 @@ type Trainer {
   name: String
   phoneNumber: String
   profilePicture: String
-  signature:String
+  signature: String
   training: Training
 }
 type Training {
   id: Long
   title: String
   description: String
-  deadline:LocalDateTime
+  deadline: LocalDateTime
   ncnmApprovalStatus: String
   trainers: [Trainer]
   location: Location
@@ -125,49 +136,48 @@ type Training {
   timeStamp: LocalDateTime
   applicantList: [TrainingApplication]
   certificatedPersonList: [Certificate]
-  trainingRequirement:String
-  
+  trainingRequirement: String
 }
 type TrainingApplication {
-id:Long
-hospitalApprovalStatus:String
-hospitalApprovalTimeStamp:LocalDateTime
-studentApprovalStatus:String
-studentApprovalTimeStamp:LocalDateTime
-training:Training
-student:Student
+  id: Long
+  hospitalApprovalStatus: String
+  hospitalApprovalTimeStamp: LocalDateTime
+  studentApprovalStatus: String
+  studentApprovalTimeStamp: LocalDateTime
+  training: Training
+  student: Student
 }
 type CertificateValidStatus {
-  id:Long
-  timeStamp:LocalDateTime
-  deadline:LocalDateTime
-  paymentList:[Payment]
-  certifiedStudent:CertifiedStudent
+  id: Long
+  timeStamp: LocalDateTime
+  deadline: LocalDateTime
+  paymentList: [Payment]
+  certifiedStudent: CertifiedStudent
 }
-type CertifiedStudent{
-  id:Long
-  student:Student
-  certificate:Certificate
-  CertificateStatus:CertificateStatus
-  timeStamp:LocalDateTime
+type CertifiedStudent {
+  id: Long
+  student: Student
+  certificate: Certificate
+  CertificateStatus: CertificateStatus
+  timeStamp: LocalDateTime
 }
 type BarchartDTO {
-    label: ID
-    value: Long
+  label: ID
+  value: Long
 }
-type AcademicAnnualResult{
-    id:Long,
-    totalMarks:Int,
-    disciplineMarks:Int,
-    student:Student,
+type AcademicAnnualResult {
+  id: Long
+  totalMarks: Int
+  disciplineMarks: Int
+  student: Student
 }
 # admins
-type HospitalAdmin{
-  id:Long
-  hospital:Hospital
-  user:AccountHolder
-  position:String
-  startingDate:LocalDateTime
-  endDate:LocalDateTime
-  status:Status
+type HospitalAdmin {
+  id: Long
+  hospital: Hospital
+  user: AccountHolder
+  position: String
+  startingDate: LocalDateTime
+  endDate: LocalDateTime
+  status: Status
 }
