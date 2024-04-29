@@ -10,11 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-@Entity @AllArgsConstructor @NoArgsConstructor
+@Entity  
 public class HospitalAdmin extends Admin{
 @Id @GeneratedValue(strategy = GenerationType.AUTO) @Getter @Setter
 private long id;
@@ -23,6 +21,7 @@ private Hospital hospital;
 @ManyToOne(cascade = CascadeType.ALL,targetEntity = AccountHolder.class) @Getter @Setter
 private AccountHolder user;
 public HospitalAdmin(long id,Hospital hospital,AccountHolder user,String position,LocalDateTime startingDate,LocalDateTime endDate,Status status){
+    super(position, startingDate, endDate, status);
 this.setEndDate(endDate);
 this.setHospital(hospital);
 this.setId(id);
