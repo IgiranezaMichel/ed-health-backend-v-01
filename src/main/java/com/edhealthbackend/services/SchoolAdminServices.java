@@ -11,6 +11,7 @@ import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.School;
 import com.edhealthbackend.model.SchoolAdmin;
 import com.edhealthbackend.model.AccountHolder;
+import com.edhealthbackend.model.gql.InputDefs.AdminInput;
 import com.edhealthbackend.model.gql.InputDefs.SchoolAdminInput;
 import com.edhealthbackend.repository.SchoolAdminRepository;
 
@@ -45,11 +46,11 @@ public SchoolAdminServices(JpaRepository<SchoolAdmin, Long> jpaRepository) {
     }
     }
 
-    public String registerSchoolAdmin(SchoolAdminInput input) {
+    public String registerSchoolAdmin(SchoolAdminInput input,AdminInput admin) {
       try {
     AccountHolder user=userServices.findById(input.getUserId());
     School school=schoolServices.findById(input.getSchoolId());
-    return this.saveOrUpdate(new SchoolAdmin(input.getId(), school, user)).getSchool().getName()+" has registered successful ";
+    return this.saveOrUpdate(new SchoolAdmin(input.getId(), school, user,admin.getPosition(),admin.getStartingDate(),admin.getEndDate(),admin.getStatus())).getSchool().getName()+" has registered successful ";
 } catch (Exception e) {
     return "Please specify correct information";
 }
