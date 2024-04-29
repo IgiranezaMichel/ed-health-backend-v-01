@@ -1,11 +1,13 @@
 package com.edhealthbackend.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.edhealthbackend.enums.Role;
+import com.edhealthbackend.enums.Status;
 import com.edhealthbackend.interfaces.DefaultRepositoryMethod;
 import com.edhealthbackend.model.AccountHolder;
 import com.edhealthbackend.model.School;
@@ -50,7 +52,7 @@ public SchoolServices(JpaRepository<School, Long> jpaRepository) {
         if(emailExist)throw new Exception("User Account already exist try again");
         AccountHolder accountHolder=accountHolderRepository.save(new AccountHolder(user.getId(),user.getName(), user.getGender(), user.getEmail(), user.getPhoneNumber(), user.getProfilePicture(), user.getDob(), user.getPassword(),Role.SCHOOL_ADMIN, null, null,null,null));
         School school= new School(in.getId(), in.getName(), in.getLogo(), locationServices.findLocationById(in.getLocationId()));
-        schoolAdminRepository.save(new SchoolAdmin(0, school, accountHolder));
+        schoolAdminRepository.save(new SchoolAdmin(0, school, accountHolder,"Admin",LocalDateTime.now(),null,Status.ACTIVE));
         return school.getName()+" has saved successful"; 
       } catch (Exception e) {
         return e.getMessage();
@@ -61,7 +63,7 @@ public SchoolServices(JpaRepository<School, Long> jpaRepository) {
       if(accountHolder!=null){
         accountHolder.setRole(Role.HOSPITAL_ADMIN);
         School school= new School(in.getId(), in.getName(), in.getLogo(), locationServices.findLocationById(in.getLocationId()));
-        schoolAdminRepository.save(new SchoolAdmin(0, school, accountHolder));
+        schoolAdminRepository.save(new SchoolAdmin(0, school, accountHolder,"Admin",LocalDateTime.now(),null,Status.ACTIVE));
         return school.getName()+" has saved successful";
       }
       return "Fails to register un existing user";
