@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.edhealthbackend.DTO.BarchartDTO;
 import com.edhealthbackend.model.SchoolAdmin;
+import com.edhealthbackend.model.gql.InputDefs.AdminInput;
 import com.edhealthbackend.model.gql.InputDefs.SchoolAdminInput;
 import com.edhealthbackend.services.SchoolAdminServices;
 
@@ -18,8 +19,8 @@ public class SchoolAdminController {
     @Autowired
     private SchoolAdminServices schoolAdminServices;
     @MutationMapping
-    public String registerSchoolAdmin(@Argument(name = "input") SchoolAdminInput input) {
-        return schoolAdminServices.registerSchoolAdmin(input);
+    public String registerSchoolAdmin(@Argument(name = "input") SchoolAdminInput input,@Argument(name = "adminInput")AdminInput admin) {
+        return schoolAdminServices.registerSchoolAdmin(input,admin);
     }
     @MutationMapping
     public String deleteSchoolAdminById(@Argument(name = "id") long id) {
