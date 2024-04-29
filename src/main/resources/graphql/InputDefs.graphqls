@@ -88,6 +88,12 @@ input SchoolInput{
   logo: String
   locationId:Long
 }
+input AdminInput{
+  position:String
+  startingDate:LocalDateTime
+  endDate:LocalDateTime
+  status:Status
+}
 # student
 input StudentInput{
 id:Long
