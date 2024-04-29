@@ -22,7 +22,7 @@ public class Training {
     private Location location;
     @ManyToOne(cascade = CascadeType.ALL,targetEntity = Hospital.class)
     private Hospital hospital;
-    public Training(long id,String title,String description,LocalDateTime deadline,String ncnmApprovalStatus,Location location,Hospital hospital){
+    public Training(long id,String title,String description,LocalDateTime deadline,String ncnmApprovalStatus,Location location,Hospital hospital,String trainingRequirement){
         this.title=title;
         this.id=id;
         this.description=description;
@@ -30,6 +30,7 @@ public class Training {
         this.ncnmApprovalStatus=ncnmApprovalStatus;
         this.location=location;
         this.hospital=hospital;
+        this.trainingRequirement=trainingRequirement;
 
     }
     @OneToMany(mappedBy = "training",cascade = CascadeType.ALL,targetEntity = Trainer.class)
