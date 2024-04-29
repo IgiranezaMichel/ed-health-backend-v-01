@@ -26,7 +26,7 @@ public class TrainingController {
     public Training registerTraining(@Argument(name = "input") TrainingInput training) {
         training.setLocation(locationServices.findLocationById(training.getLocationId()));
         training.setHospital(hospitalServices.findHospitalById(training.getHospitalId()));
-        return trainingServices.saveOrUpdateTraining(new Training(training.getId(), training.getTitle(), training.getDescription(), training.getDeadline(), training.getNcnmApprovalStatus(), training.getLocation(), training.getHospital()));
+        return trainingServices.saveOrUpdateTraining(new Training(training.getId(), training.getTitle(), training.getDescription(), training.getDeadline(), training.getNcnmApprovalStatus(), training.getLocation(), training.getHospital(),training.getTrainingRequirement()));
     }
 
     @MutationMapping
